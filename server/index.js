@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
 
+const articlesController = require('./controller');
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -15,17 +17,6 @@ const {PORT,
     DATABASE_PORT
 } = process.env;
 
-
-// massive({
-//     host: 'localhost',
-//     port: 5432,
-//     database: 'appdb',
-//     user: 'appuser',
-//     password: 'apppwd',
-//     ssl: false,
-//     poolSize: 10
-//   }).then(instance => {...});
-
 //Connect to databse, and set it to app
 massive({
     host: DATABASE_URI,
@@ -35,9 +26,13 @@ massive({
     password: DATABASE_PASSWORD
 })
 .then(db => {
-    app.set('db', db);
-})
+    app.set('db', db);    
+}).catch(err => {
+    console.log('There was an erorr in connecting to the db:', err);
+});
+
+app.get('/api/articles', articlesController.getArticles);
 
 app.listen(PORT, function() {
     console.log('listening on Port:', PORT);
-})
+});
