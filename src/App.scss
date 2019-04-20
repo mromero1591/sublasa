@@ -1,0 +1,102 @@
+@charset "utf-8";
+@import "../node_modules/bulma/bulma.sass";
+
+$primary-color: #F8E196;
+$breakpoint-tablet: 1088px;
+
+$test-background-url: "https://images.unsplash.com/photo-1524741978410-350ba91a70d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1259&q=80";
+
+
+// NAVBAR
+.nav-bar-logo {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2em;
+    span {
+        color: $primary-color;
+    }
+    
+}
+
+.nav-bar-logo:hover {
+    color: black;
+}
+
+.navbar-burger {
+    top: 5px;
+}
+
+.btn-sublasa {
+    border-radius: 10px;
+    font-weight: 200;
+}
+
+.btn-sublasa-primary {
+    background-color: $primary-color;
+    color: black;
+}
+
+.btn-sublasa-secondary {
+    background-color: white;
+    border-color: $primary-color;
+    
+}
+
+#navbar-logo-link {
+    border-bottom: none;
+}
+
+a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+    color: black;
+    border-bottom: 2px $primary-color solid;
+}
+
+
+@media only screen and (min-width: $breakpoint-tablet) {
+    .navbar {
+        padding: 10px 10% 0px;
+    }
+
+    .navbar-topics {
+        border-right: 2px $primary-color solid;
+    }
+    a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+        border-bottom: 2px $primary-color solid;
+        background-color: white;
+    }
+}
+
+//LANDING BANNER
+.sublasa-hero-company-name {
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+.sublasa-hero-body {
+    padding-top: 3rem;
+}
+
+.sublasa-hero-snippet {
+    margin-top: 10px;
+}
+
+.hero-body {
+    padding-top: 0px;
+}
+
+// NEWSLETTER CARD
+.sublasa-newsletter-card {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    height: 100%;
+    background: linear-gradient(to bottom,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.6)),
+        url($test-background-url);
+
+    border-radius: 20px;
+    box-shadow: 3px 3px 5px 6px #ccc;
+    h1 {
+        color: white;
+    }
+    height: 400px;
+}
+

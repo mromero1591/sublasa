@@ -1,32 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import './App.scss';
 import Axios from 'axios';
+
+
+//Custom Imports
 import NavBar from './Components/NavBar/NavBar';
+import routes from './routes';
+import Footer from './Components/Footer/Footer';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      content: ''
-    }
+      open: 'open'
+    };
   }
   componentDidMount() {
     Axios.get('/api/articles').then(res => {
       console.log(res);
       this.setState({content: res.data[3].content});
-      console.log(res.data[3].content);
-      //document.documentElement.innerHTML =  res.data[1].content;
     })
   }
   render() {
     return (
-      <div className='Ap'>
-        <iframe allowFullScreen='true' srcDoc={this.state.content} id='app-'>
-          Test
-        </iframe>
-      </div>
+      <main>
+        <NavBar />
+        {routes}
+        <Footer />
+      </main>
     );
   }
 }

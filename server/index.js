@@ -9,7 +9,7 @@ const app = express();
 app.use(bodyParser.json());
 
 //ENVIORMENT VARIABLES
-const {PORT, 
+const {SERVER_PORT, 
     DATABASE_URI,
     DATABASE_USER,
     DATABASE_NAME,
@@ -33,6 +33,6 @@ massive({
 
 app.get('/api/articles', articlesController.getArticles);
 
-app.listen(PORT, function() {
-    console.log('listening on Port:', PORT);
+app.listen(SERVER_PORT, function() {
+    console.log('listening on Port:', SERVER_PORT);
 });

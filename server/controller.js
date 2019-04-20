@@ -2,7 +2,7 @@ const gmailController = require('./gmailController');
 
 module.exports = {
     getArticles: function(req,res,next) {
-        gmailController.runEmailController(req.app);
+        //gmailController.runEmailController(req.app);
         var dbInstance = req.app.get('db');
         
         dbInstance.get_articles()
@@ -11,7 +11,7 @@ module.exports = {
                 var content = article.content;
                 var buff = new Buffer.from(content, 'base64');  
                 var convertedContent = buff.toString();
-                //var decodedContent = decodeURI(convertedContent);
+
                 return {
                     ...article,
                     content: convertedContent
