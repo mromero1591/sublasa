@@ -31,7 +31,9 @@ massive({
     console.log('There was an erorr in connecting to the db:', err);
 });
 
+app.get('/api/newsletters', articlesController.getNewsLetters);
 app.get('/api/articles', articlesController.getArticles);
+app.get('/api/topics', articlesController.getTopics);
 
 app.listen(SERVER_PORT, function() {
     console.log('listening on Port:', SERVER_PORT);

@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
-
+import Axios from 'axios';
 //CUSTOM IMPORTS
-import './NavBar.scss';
 
 export default class NavBar extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isActive: false
+      isActive: false,
+      topics: []
     }
 
+  }
+
+  componentDidMount() {
+    Axios.get('/api/topics')
+    .then(res => {
+      var newTopics = res.data;
+      this.setState({topics: newTopics});
+    })
   }
 
   handleNavbarMenu = () => {
@@ -20,7 +28,13 @@ export default class NavBar extends Component {
       isActive: newIsActive
     })
   }
+
   render() {
+    var displayTopics = this.state.topics.map( topic => {
+      return(
+        <Link to='/' className="navbar-item" key={topic.id}>{topic.name}</Link>
+      );
+    })
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
@@ -43,9 +57,7 @@ export default class NavBar extends Component {
             <div className="navbar-item has-dropdown is-hoverable navbar-topics">
               <Link to='/' className='navbar-link'>Topics</Link>
               <div className="navbar-dropdown is-boxed">
-                <Link to='/' className="navbar-item">About</Link>
-                <Link to='/' className="navbar-item">Jobs</Link>
-                <Link to='/' className="navbar-item">Contact</Link>
+                {displayTopics}
               </div>
             </div>
 

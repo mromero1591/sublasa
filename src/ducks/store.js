@@ -4,7 +4,7 @@ import newsLetterReducer from './newsletterRecudcer/newsletterReduce';
 import articlesReducer from './articlesReducer/articlesReducer';
 
 const reducer = combineReducers({
-    newletter: newsLetterReducer, 
+    newsletter: newsLetterReducer, 
     articlesReduer: articlesReducer
 });
 

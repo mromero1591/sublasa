@@ -4,9 +4,6 @@
 $primary-color: #F8E196;
 $breakpoint-tablet: 1088px;
 
-$test-background-url: "https://images.unsplash.com/photo-1524741978410-350ba91a70d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1259&q=80";
-
-
 // NAVBAR
 .nav-bar-logo {
     text-transform: uppercase;
@@ -34,6 +31,7 @@ $test-background-url: "https://images.unsplash.com/photo-1524741978410-350ba91a7
 .btn-sublasa-primary {
     background-color: $primary-color;
     color: black;
+    border: none;
 }
 
 .btn-sublasa-secondary {
@@ -67,36 +65,93 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
 }
 
 //LANDING BANNER
-.sublasa-hero-company-name {
-    margin-top: 20px;
-    text-transform: uppercase;
-}
-.sublasa-hero-body {
-    padding-top: 3rem;
-}
 
-.sublasa-hero-snippet {
-    margin-top: 10px;
-}
-
-.hero-body {
-    padding-top: 0px;
+// NEWSLETTER CARD
+.card-carol {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 5%;
+    height: 500px;
 }
 
 // NEWSLETTER CARD
-.sublasa-newsletter-card {
+.newletter-card {
+    grid-column: 1/4;
     display: flex;
+    justify-content: space-between;
     flex-flow: column nowrap;
-    justify-content: flex-end;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.6)
+      ),url('https://images.unsplash.com/photo-1478358161113-b0e11994a36b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     height: 100%;
-    background: linear-gradient(to bottom,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.6)),
-        url($test-background-url);
-
-    border-radius: 20px;
-    box-shadow: 3px 3px 5px 6px #ccc;
-    h1 {
-        color: white;
-    }
-    height: 400px;
 }
 
+.newsletter-card-button {
+    align-self: flex-end;
+}
+
+.active-card {
+    box-shadow: 3px 3px 5px 6px #ccc;
+    height: 600px;
+    width: 400px;
+}
+
+//SECTION DIVIDER
+.sectionDividerContainer {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1/2;
+    grid-template-columns: 2fr 1fr 2fr;
+    justify-content: center;
+}
+
+.section-divider-title {
+    font-size: 2.5em;
+    align-self: center;
+    text-transform: uppercase;
+}
+
+.sectionDividerLine {
+    height: 2px;
+    width: 100%;
+    background-color: $primary-color;
+}
+
+.feature-section-item {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.split-tiles {
+    justify-content: space-between;
+}
+.center-tile {
+    justify-content: center;
+}
+
+//Subscribe section
+
+.subscribe-section {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-bottom: 50px;
+    .btn-sublasa-action {
+        margin-top: 20px;
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}
+
+//Footer
+.footer {
+    margin-top: 20px;
+    background-color: #b1b8cd;
+}

@@ -182,7 +182,7 @@ function markAsRead(gmail,id) {
         }
     },(err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
-        console.log(res);
+        //console.log(res);
     }
     )
 }

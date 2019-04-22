@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 
 import './App.scss';
 import Axios from 'axios';
-
+import {connect} from 'react-redux';
 
 //Custom Imports
 import NavBar from './Components/NavBar/NavBar';
 import routes from './routes';
 import Footer from './Components/Footer/Footer';
+import {updateNewsLetters} from './ducks/newsletterRecudcer/newsletterReduce';
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: 'open'
-    };
-  }
   componentDidMount() {
-    Axios.get('/api/articles').then(res => {
-      console.log(res);
-      this.setState({content: res.data[3].content});
+    Axios.get('/api/newsletters').then(res => {
+      this.props.updateNewsLetters(res.data);
     })
   }
   render() {
@@ -34,4 +28,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDisptachToProps = {updateNewsLetters};
+
+export default connect(null,mapDisptachToProps)(App);
