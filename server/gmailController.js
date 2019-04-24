@@ -1,6 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
+const Axios = require('axios');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/gmail.modify'];
@@ -154,6 +155,9 @@ function readEmails(gmail, id, dbInstance) {
             } else {
                 content = res.data.payload.body.data;
                 snippet = res.snippet;
+                if(!snippet) {
+                    snippet = '';
+                }
             }
             
             //check to make sure snippet is not greater then 100 char.

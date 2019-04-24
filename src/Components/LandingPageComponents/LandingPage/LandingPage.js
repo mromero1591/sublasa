@@ -5,9 +5,9 @@ import LandingBanner from '../LandingBanner/LandingBanner';
 import SectionDivder from '../SectionDivider/SectionDivider';
 
 //asset import
-import chip from '../../assets/imgs/chip-head.svg';
-import monitor from '../../assets/imgs/monitor-window.svg';
-import writePaper from '../../assets/imgs/write-paper-ink.svg';
+import chip from '../../../assets/imgs/chip-head.svg';
+import monitor from '../../../assets/imgs/monitor-window.svg';
+import writePaper from '../../../assets/imgs/write-paper-ink.svg';
 
 export default class LandingPage extends Component {
   render() {

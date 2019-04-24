@@ -2,7 +2,7 @@
 @import "../node_modules/bulma/bulma.sass";
 
 $primary-color: #F8E196;
-$breakpoint-tablet: 1088px;
+$breakpoint-tablet: 768px;
 
 // NAVBAR
 .nav-bar-logo {
@@ -47,21 +47,6 @@ $breakpoint-tablet: 1088px;
 a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
     color: black;
     border-bottom: 2px $primary-color solid;
-}
-
-
-@media only screen and (min-width: $breakpoint-tablet) {
-    .navbar {
-        padding: 10px 10% 0px;
-    }
-
-    .navbar-topics {
-        border-right: 2px $primary-color solid;
-    }
-    a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
-        border-bottom: 2px $primary-color solid;
-        background-color: white;
-    }
 }
 
 //LANDING BANNER
@@ -150,8 +135,76 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     }
 }
 
+
+//TOPICS SECTION
+.newsletter-section-divider {
+    display: grid;
+    grid-template-columns: 100%;
+    align-items: center;
+}
+
+.newsletter-divider-title {
+    font-size: 1.5em;
+}
+
+
+//NEWSLETTERARTICLECONTAINER
+.newsletter-article-container {
+    display: grid;
+    grid-template-columns: 50%;
+    padding-top: 20px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    justify-content: center;
+}
+
+.newsletter-article-card {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    background-color: #3e4c4f;
+    color: white;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 //Footer
 .footer {
     margin-top: 20px;
     background-color: #b1b8cd;
+}
+
+
+@media only screen and (min-width: $breakpoint-tablet) {
+    .navbar {
+        padding: 10px 10% 0px;
+    }
+
+    .navbar-topics {
+        border-right: 2px $primary-color solid;
+    }
+    a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+        border-bottom: 2px $primary-color solid;
+        background-color: white;
+    }
+
+
+    .newsletter-section-divider {
+        grid-template-columns: 20% 80%;
+        align-items: center;
+    }
+    
+    .newsletter-divider-title {
+        font-size: 1.5em;
+    }
+
+    .newsletter-article-container {
+        display: grid;
+        grid-template-columns: repeat(4, 20%);
+        grid-template-rows: 300px;
+        grid-column-gap: 5%;
+        justify-content: end;
+    }
 }

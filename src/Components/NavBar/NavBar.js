@@ -32,7 +32,7 @@ export default class NavBar extends Component {
   render() {
     var displayTopics = this.state.topics.map( topic => {
       return(
-        <Link to='/' className="navbar-item" key={topic.id}>{topic.name}</Link>
+        <Link to={`/topics/${topic.name}`} className="navbar-item" key={topic.id}>{topic.name}</Link>
       );
     })
     return (
@@ -42,11 +42,11 @@ export default class NavBar extends Component {
                <div className='nav-bar-logo'>Sub<span>lasa</span></div>
              </Link>
 
-             <Link to='/' onClick={this.handleNavbarMenu} role="button" className={`navbar-burger burger ${this.state.isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+             <a onClick={this.handleNavbarMenu} role="button" className={`navbar-burger burger ${this.state.isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
-            </Link>
+            </a>
         </div>
       
         <div id="navbarBasicExample" className={`navbar-menu ${this.state.isActive ? 'is-active' : ''}`}>
