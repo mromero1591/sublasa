@@ -9,6 +9,8 @@ class ArticleContainer extends Component {
                 content: ''
             }
         }
+
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
 
     componentDidMount() { 
