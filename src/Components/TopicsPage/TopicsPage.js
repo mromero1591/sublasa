@@ -36,7 +36,6 @@ class TopicsPage extends Component {
         //Outcome: State is updated with new newsletters
         Axios.get(`/api/newletters/${topicId}`)
         .then(res => {
-            console.log(res.data);
             this.props.updateNewsLetters(res.data);
         }).catch( err => {
             console.log('error in getting by topic', err);

@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
-import Unsplash from 'unsplash-js';
-import Axios from 'axios';
 
-export default class ArticleCard extends Component {
-    componentDidMount() {
-        
-    }
-
+class ArticleCard extends Component {
     backGroundCard = () => {
         return {
             backgroundColor: this.props.backgroundColor
@@ -18,10 +12,12 @@ export default class ArticleCard extends Component {
         return (
             <div className='box newsletter-article-card' style={this.backGroundCard()}>
                 <p>{this.props.article.title}</p>
-                <Link to={`/article/${this.props.article.id}`} className='button btn-sublasa btn-sublasa-primary'>
+                <Link to={`/articles/${this.props.article.id}`} className='button btn-sublasa btn-sublasa-primary' >
                     Read
                 </Link>
             </div>
         )
     }
 }
+
+export default ArticleCard;

@@ -1,26 +1,21 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
+import {connect} from 'react-redux';
 
+//Custom imports
 import ArticleCard from '../ArticleCard/ArticleCard';
+import {updateArticles} from '../../ducks/articlesReducer/articlesReducer';
 
 class NewsletterArticleContainer extends Component {
   _isMounted = false;
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      newsletterArticles: [],
-      articleImgs: []
-    }
-  }
   componentDidMount() {
     this._isMounted = true;
     var newsletterId = this.props.newsletter.id;
     Axios.get(`/api/newsletter/${newsletterId}/articles`)
     .then(res => {
       if(this._isMounted){
-        this.setState({newsletterArticles: res.data});
+        this.props.updateArticles(res.data);
       }
     }).catch( err => {
       console.log('err in fecting articles of a newsletter:', err);
@@ -32,15 +27,18 @@ class NewsletterArticleContainer extends Component {
   }
 
   render() {
-    var displayNewsletterArticles = this.state.newsletterArticles.map( (article, index) => {
-      var backgroundColor = '#3e4c4f';
+    var displayNewsletterArticles = this.props.articles.map( (article, index) => {
+      if(article.newsletter_id === this.props.newsletter.id) {
+        var backgroundColor = '#3e4c4f';
 
-      if(index % 2 !== 0) {
-        backgroundColor = '#df8d4e';
+        if(index % 2 !== 0) {
+          backgroundColor = '#df8d4e';
+        }
+        return(
+          <ArticleCard key={article.id} article={article} backgroundColor={backgroundColor}/>
+        )
       }
-      return(
-        <ArticleCard key={article.id} article={article} backgroundColor={backgroundColor}/>
-      )
+      
     })
     return (
       <section className='newsletter-article-container'>
@@ -50,4 +48,12 @@ class NewsletterArticleContainer extends Component {
   }
 }
 
-export default NewsletterArticleContainer;
+function mapStateToProps(state) {
+  return {
+    articles: state.articles.articles
+  }
+}
+
+const mapDispatchToProps = {updateArticles}
+
+export default connect(mapStateToProps,mapDispatchToProps)(NewsletterArticleContainer);

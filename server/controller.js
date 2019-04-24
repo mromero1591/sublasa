@@ -78,5 +78,24 @@ module.exports = {
             console.log('error in getting articles:', err);
             res.sendStatus(500);
         })
+    },
+
+    getArticleById: function(req,res,next) {
+        var dbInstance = req.app.get('db');
+        var { id } = req.params;
+        dbInstance.get_article(id)
+        .then(article => {
+            var content = article[0].content;
+            var buff = new Buffer.from(content, 'base64');  
+            var convertedContent = buff.toString();
+            var convertedArticle = {
+                ...article,
+                content: convertedContent
+            }
+            res.status(200).send(convertedArticle);
+        }).catch(err => {
+            console.log(err);
+            res.sendStatus(500);
+        })
     }
 }

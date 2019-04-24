@@ -36,6 +36,7 @@ app.get('/api/articles', articlesController.getArticles);
 app.get('/api/topics', articlesController.getTopics);
 app.get('/api/newletters/:id', articlesController.getNewsLettersByTopic);
 app.get('/api/newsletter/:id/articles', articlesController.getArticlesByNewsletter);
+app.get('/api/articles/:id', articlesController.getArticleById);
 
 app.listen(SERVER_PORT, function() {
     console.log('listening on Port:', SERVER_PORT);

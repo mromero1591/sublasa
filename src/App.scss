@@ -176,6 +176,11 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     background-color: #b1b8cd;
 }
 
+//ARTICLE CONTAINER
+.article-container {
+    height: 100vh;
+    width: 100vw;
+}
 
 @media only screen and (min-width: $breakpoint-tablet) {
     .navbar {
