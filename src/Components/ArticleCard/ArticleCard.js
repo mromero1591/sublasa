@@ -1,23 +1,30 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom';
 
-class ArticleCard extends Component {
-    backGroundCard = () => {
+function ArticleCard(props) {
+//Purpose: creats an Article Card Component.
+//Params: props, an object containing the cards props.
+//returns: ArticleCard, react component.
+//outcome: React component called ArticleCard is created.
+
+    var backGroundCard = () => {
+        //Purpose: set the background style for cards
+        //Params: none
+        //returns: obj, contains the backgrund style
+        //outcome: style is created.
         return {
-            backgroundColor: this.props.backgroundColor
+            backgroundColor: props.backgroundColor
         }
     }
 
-    render() {
-        return (
-            <div className='box newsletter-article-card' style={this.backGroundCard()}>
-                <p>{this.props.article.title}</p>
-                <Link to={`/articles/${this.props.article.id}`} className='button btn-sublasa btn-sublasa-primary' >
-                    Read
-                </Link>
-            </div>
-        )
-    }
+    return (
+        <div className='box newsletter-article-card' style={backGroundCard()}>
+            <p>{props.article.title}</p>
+            <Link to={`/articles/${props.article.id}`} className='button btn-sublasa btn-sublasa-primary' >
+                Read
+            </Link>
+        </div>
+    )
 }
 
 export default ArticleCard;

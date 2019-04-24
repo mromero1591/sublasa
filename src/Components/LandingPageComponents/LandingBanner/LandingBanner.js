@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 //CUSTOM IMPORTS
 import {updateNewsLetters} from '../../../ducks/newsletterRecudcer/newsletterReduce';
-import NewsLetterCard from '../../NewsLetterCard/NewsLetterCard';
+
 
 class LandingBanner extends Component {
     constructor(props) {
@@ -23,13 +23,6 @@ class LandingBanner extends Component {
     }
       
     render() {
-        var newsLetterCards = this.props.newsletters.slice(0, 5).map( (newsletter) => {
-            return (
-                <div className="" key={newsletter.id}>
-                    <NewsLetterCard newsletter={newsletter}/>
-                </div>
-            )
-        })
         return (
             <section className="">
                 <header className="container desktop">

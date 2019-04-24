@@ -38,7 +38,7 @@ class NewsletterArticleContainer extends Component {
           <ArticleCard key={article.id} article={article} backgroundColor={backgroundColor}/>
         )
       }
-      
+      return '';
     })
     return (
       <section className='newsletter-article-container'>

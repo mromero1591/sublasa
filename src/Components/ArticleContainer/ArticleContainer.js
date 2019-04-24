@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Axios from 'axios';
 
+
 class ArticleContainer extends Component {
     constructor(props) {
         super(props);
@@ -28,15 +29,8 @@ class ArticleContainer extends Component {
     }
     render() {
         return(
-            <iframe srcDoc={this.state.currentArticle.content}  className='article-container' frameBorder="0"></iframe>
+            <iframe title={this.state.currentArticle.title} srcDoc={this.state.currentArticle.content}  className='article-container' frameBorder="0"></iframe>
         )
-    }
-}
-
-function mapStateToProps(state) {
-    return {
-        articles: state.articles.articles,
-        currentArticle: state.articles.currentArticle
     }
 }
 
