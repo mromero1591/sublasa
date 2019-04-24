@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 
 //CUSTOM IMPORTS
-import {updateNewsLetters} from '../../../ducks/newsletterRecudcer/newsletterReduce';
-
-
 class LandingBanner extends Component {
     constructor(props) {
         super(props);
@@ -49,6 +46,4 @@ function mapStateToProps(state) {
     }
 }
 
-var mapDispatchToProps = {updateNewsLetters};
-
-export default connect(mapStateToProps,mapDispatchToProps)(LandingBanner);
+export default connect(mapStateToProps)(LandingBanner);

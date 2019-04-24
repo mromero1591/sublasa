@@ -68,7 +68,7 @@ export default class NavBar extends Component {
       
         <div id="navbarBasicExample" className={`navbar-menu ${this.state.isActive ? 'is-active' : ''}`}>
           <div className="navbar-start">
-            <Link to='/' className="navbar-item navbar-sublasa-item">NewsLetter</Link>
+            <Link to={`/topics/all`} className="navbar-item navbar-sublasa-item">NewsLetters</Link>
           </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable navbar-topics">

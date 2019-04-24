@@ -34,12 +34,20 @@ class TopicsPage extends Component {
         //Params: string, the topic
         //Return: none.
         //Outcome: State is updated with new newsletters
-        Axios.get(`/api/newletters/${topicId}`)
-        .then(res => {
-            this.props.updateNewsLetters(res.data);
-        }).catch( err => {
-            console.log('error in getting by topic', err);
-        });
+        if(topicId !== 'all') {
+            Axios.get(`/api/newletters/${topicId}`)
+            .then(res => {
+                this.props.updateNewsLetters(res.data);
+            }).catch( err => {
+                console.log('error in getting by topic', err);
+            });
+        } else {
+            Axios.get('/api/newsletters').then(res => {
+                this.props.updateNewsLetters(res.data);
+            }).catch( err => {
+                console.log('error in getting by topic', err);
+            });
+        }
     }
 
     render() {

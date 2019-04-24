@@ -48,7 +48,6 @@ module.exports = {
     getNewsLettersByTopic: function(req,res,next) {
         var dbInstance = req.app.get('db');
         var {id} = req.params;
-
         dbInstance.get_newsLetters_by_topic(id)
         .then(newsLetters => {
             res.status(200).send(newsLetters);
