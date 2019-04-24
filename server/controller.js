@@ -88,7 +88,7 @@ module.exports = {
             var buff = new Buffer.from(content, 'base64');  
             var convertedContent = buff.toString();
             var convertedArticle = {
-                ...article,
+                ...article[0],
                 content: convertedContent
             }
             res.status(200).send(convertedArticle);

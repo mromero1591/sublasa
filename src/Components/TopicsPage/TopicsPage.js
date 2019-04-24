@@ -16,6 +16,7 @@ class TopicsPage extends Component {
         //Outcome: State is updated with new newsletters.
         var topicId = this.props.match.params.id;
         this.getNewslettersByTopic(topicId);
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
 
     componentDidUpdate(prevProps) {

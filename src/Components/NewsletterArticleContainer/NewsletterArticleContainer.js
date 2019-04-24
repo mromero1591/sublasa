@@ -3,7 +3,7 @@ import Axios from 'axios';
 import {connect} from 'react-redux';
 
 //Custom imports
-import ArticleCard from '../ArticleCard/ArticleCard';
+import ArticleCard from '../ArticleComponents/ArticleCard/ArticleCard';
 import {updateArticles} from '../../ducks/articlesReducer/articlesReducer';
 
 class NewsletterArticleContainer extends Component {

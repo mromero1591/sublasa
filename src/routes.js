@@ -4,7 +4,7 @@ import {Switch, Route} from 'react-router-dom';
 //CUSTOM IMPORT
 import LandingPage from './Components/LandingPageComponents/LandingPage/LandingPage';
 import TopicsPage from './Components/TopicsPage/TopicsPage';
-import ArticleContainer from './Components/ArticleContainer/ArticleContainer';
+import ArticleContainer from './Components/ArticleComponents/ArticleContainer/ArticleContainer';
 
 export default (
     <Switch>

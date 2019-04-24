@@ -173,13 +173,13 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
 //Footer
 .footer {
     margin-top: 20px;
-    background-color: #b1b8cd;
+    background-color: #fafafa;
 }
 
 //ARTICLE CONTAINER
 .article-container {
-    height: 100vh;
-    width: 100vw;
+    display: flex;
+    justify-content: center;
 }
 
 @media only screen and (min-width: $breakpoint-tablet) {
