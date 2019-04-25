@@ -23,7 +23,9 @@ export default class NavBar extends Component {
     .then(res => {
       //if a topic is returned then set topics on state.
       var newTopics = res.data;
-      this.setState({topics: newTopics});
+      this.setState({
+        topics: newTopics,
+      });
     }).catch(err => {
       //if there is an error in getting the topics then console the error.
       console.log('error faced in getting topics', err);
@@ -44,14 +46,13 @@ export default class NavBar extends Component {
   }
 
   render() {
-
     //Map through the topics, and create a link for each topic.
     var displayTopics = this.state.topics.map( topic => {
       return(
         <Link to={`/topics/${topic.name}`} className="navbar-item" key={topic.id}>{topic.name}</Link>
       );
     })
-    
+
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
@@ -80,7 +81,7 @@ export default class NavBar extends Component {
 
             <div className="navbar-item">
               <div className="buttons">
-                <Link to='/' className="button btn-sublasa btn-sublasa-primary">
+                <Link onClick={this.props.toggleSignUp} to='/' className="button btn-sublasa btn-sublasa-primary">
                   Sign up
                 </Link>
                 <Link to='/' className="button btn-sublasa btn-sublasa-secondary">

@@ -32,7 +32,7 @@ class NewsletterArticleContainer extends Component {
         var backgroundColor = '#3e4c4f';
 
         if(index % 2 !== 0) {
-          backgroundColor = '#df8d4e';
+          backgroundColor = '#70788e';
         }
         return(
           <ArticleCard key={article.id} article={article} backgroundColor={backgroundColor}/>

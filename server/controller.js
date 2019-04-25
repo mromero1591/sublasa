@@ -2,6 +2,10 @@ const gmailController = require('./gmailController');
 
 module.exports = {
     getNewsLetters: function(req,res,next) {
+        //Purpose: Get all the newsletters in the database
+        //Params: req: the request from the front end
+        //Returns: all newsletters from the database as an array.
+        //Outcome: none
         gmailController.runEmailController(req.app);
         var dbInstance = req.app.get('db');
         dbInstance.get_newsletters()
@@ -13,7 +17,10 @@ module.exports = {
         
     },
     getArticles: function(req,res,next) {
-        
+        //Purpose: Get all the articles in the database.
+        //Params: req: the request from the front end.
+        //Returns: all articles from the database as an array.
+        //Outcome: none.
         var dbInstance = req.app.get('db');
         
         dbInstance.get_articles()
@@ -35,6 +42,10 @@ module.exports = {
         })
     },
     getTopics: function(req,res,next) {
+        //Purpose: Get all the topics in the database
+        //Params: req: the request from the front end
+        //Returns: all topics from the database as an array.
+        //Outcome: none
         var dbInstance = req.app.get('db');
 
         dbInstance.get_topics()
@@ -46,6 +57,10 @@ module.exports = {
         })
     },
     getNewsLettersByTopic: function(req,res,next) {
+        //Purpose: Get all the newsletters in the database, by topic.
+        //Params: req: the request from the front end
+        //Returns: all newsletters by topic from the database as an array.
+        //Outcome: none
         var dbInstance = req.app.get('db');
         var {id} = req.params;
         dbInstance.get_newsLetters_by_topic(id)
@@ -57,7 +72,10 @@ module.exports = {
         })
     },
     getArticlesByNewsletter: function(req,res,next) {
-        
+        //Purpose: Get all the articles in the database by newsletter
+        //Params: req: the request from the front end
+        //Returns: 4 of the most recent newsletters from the database as an array.
+        //Outcome: none
         var dbInstance = req.app.get('db');
         var {id} = req.params;
         dbInstance.get_articles_by_newsletter(id)
@@ -80,6 +98,10 @@ module.exports = {
     },
 
     getArticleById: function(req,res,next) {
+        //Purpose: Get one article from the databse, by id
+        //Params: req: the request from the front end
+        //Returns: one article from the databse as an object.
+        //Outcome: none
         var dbInstance = req.app.get('db');
         var { id } = req.params;
         dbInstance.get_article(id)

@@ -37,12 +37,11 @@ class ArticleContainer extends Component {
 
     render() {
         return(
-            <section className='container'>
+            <section className='container '>
                 <ArticleNavigation goBack={this.props.history.goBack}  title={this.state.currentArticle.title} />
                 <div className="continer article-container">
                     <div id='test'></div>
                 </div>
-                {/* <iframe title={this.state.currentArticle.title} srcDoc={this.state.currentArticle.content}  className='article-container' frameBorder="0"></iframe> */}
             </section>
         )
     }
