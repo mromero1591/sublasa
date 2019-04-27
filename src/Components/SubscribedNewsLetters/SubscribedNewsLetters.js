@@ -1,11 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
-export default class SubscribedNewsLetters extends Component {
+//Custom Import
+ 
+class SubscribedNewsLetters extends Component {
+  
   render() {
+    var loggedIn = this.props.loggedIn;
     return (
       <div>
-        Subscribed newsletters
+        {loggedIn ? (
+          <p>Subscribed newsletters</p>
+        ) : (
+          <Redirect to='/' />
+        )}
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    loggedIn: state.Auth.loggedIn
+  }
+}
+
+export default connect(mapStateToProps) (SubscribedNewsLetters);

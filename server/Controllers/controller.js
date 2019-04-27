@@ -1,19 +1,24 @@
-const gmailController = require('./gmailController');
+const gmailController = require('../gmailController');
 
 module.exports = {
     getNewsLetters: function(req,res,next) {
-
         //Purpose: Get all the newsletters in the database
         //Params: req: the request from the front end
         //Returns: all newsletters from the database as an array.
         //Outcome: none
         gmailController.runEmailController(req.app);
-
+        
+        var currentUser;
+        if(req.session && req.session.user) {
+            currentUser = req.session.user;
+        }
+        
         var dbInstance = req.app.get('db');
         
         dbInstance.get_newsletters()
         .then(newsLetters => {
-            res.status(200).send(newsLetters);
+            var loggedIn = currentUser ? true : false;
+            res.status(200).send({newsletters: newsLetters, loggedIn: loggedIn});
         }).catch(err => {
             res.sendStatus(500);
         })        

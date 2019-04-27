@@ -38,7 +38,7 @@ function reducer(state=initalState, action) {
             }
         case UPDATE_LOGIN:
             return {
-                ...state,
+                ...initalState,
                 loggedIn: action.payLoad
             }
         default:
@@ -77,9 +77,7 @@ export function updatePassword(password) {
 export function updateLoggedIn(loggedIn) {
     return {
         type: UPDATE_LOGIN,
-        payLoad: {
-            ...loggedIn
-        }
+        payLoad: loggedIn,
     }
 }
 

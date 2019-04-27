@@ -44,7 +44,7 @@ class TopicsPage extends Component {
             });
         } else {
             Axios.get('/api/newsletters').then(res => {
-                this.props.updateNewsLetters(res.data);
+                this.props.updateNewsLetters(res.data.newsletters);
             }).catch( err => {
                 console.log('error in getting by topic', err);
             });

@@ -6,8 +6,8 @@ const session = require('express-session');
 const passport = require('passport');
 const localStratagy = require('passport-local');
 const bcrypt = require('bcrypt');
-const articlesController = require('./controller');
-
+const articlesController = require('./Controllers/controller');
+const authController = require('./Controllers/authController');
 const app = express();
 app.use(bodyParser.json());
 
@@ -131,35 +131,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.post('/auth/register', passport.authenticate('register', { failWithError: true }), (req,res) => {
-    //set cookie for session
-    req.session.user = req.user;
-    res.send({ message: 'Successfully registered', loggedIn: true });
-},(err, req, res, next) => {
-    res.status(500);
-    
-    if (err != 'System Failure') {
-        res.status(401);
-    }
-
-    res.send({ message: err });
-});
-
-app.post('/auth/login', passport.authenticate('login'), (req, res) => {
-    //set cookie for session
-    req.session.user = req.user;
-    
-    res.send({ message: 'Successfully logged in'});
-},(err, req, res, next) => {
-    res.status(500);
-    
-    if (err != 'System Failure') {
-        res.status(401);
-    }
-
-    res.send({ message: err });
-}
-);
+app.post('/auth/register', passport.authenticate('register'), authController.register,authController.authError);
+app.post('/auth/login', passport.authenticate('login'), authController.login,authController.authError);
+app.get('/auth/logout', authController.logout);
 
 app.get('/api/newsletters', articlesController.getNewsLetters);
 app.get('/api/newletters/:id', articlesController.getNewsLettersByTopic);

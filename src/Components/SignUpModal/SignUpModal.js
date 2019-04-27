@@ -163,9 +163,9 @@ class SignUpModal extends Component {
     }
 
     handleSucessfulAuth = () => {
-        //close the sign up screen
-        updateActiveState(false);
-        updateLoggedIn(true);
+        
+        //update sign up data after sucessfull login
+        this.props.updateLoggedIn(true);
         //redirect to the newsletter section.
         this.props.history.push('/newsletters'); 
     }
@@ -233,7 +233,7 @@ function mapStateToProps(state) {
       email: email,
       password: password 
     }
-  }
+}
   
 const mapDispatchToProps = {updateActiveState, updateType, updateEmail, updatePassword, updateLoggedIn};
 

@@ -4,7 +4,7 @@ import Axios from 'axios';
 import {connect} from 'react-redux';
 
 //custom imports
-import {updateActiveState, updateType} from '../../ducks/AuthReducer/AuthReducer';
+import AuthSection from '../AuthSection/AuthSection';
 
 class NavBar extends Component {
 
@@ -36,6 +36,12 @@ class NavBar extends Component {
     })
   }
 
+  componentDidUpdate(prevProps) {
+    if(this.props.loggedIn !== prevProps.loggedIn) {
+      console.log('loggedIn changed');
+    }
+  }
+
   handleNavbarMenu = () => {
     //Purpose: toogle the menu from showing to not.
     //Params: none
@@ -48,14 +54,6 @@ class NavBar extends Component {
       isActive: newIsActive
     })
   }
-
-  handleauth = (type) => {
-    var {signUpActive, updateActiveState, updateType} = this.props;
-    var newState = signUpActive ?  false : true;
-    updateActiveState(newState);
-    updateType(type);
-  }
-
   render() {
     //Map through the topics, and create a link for each topic.
     var displayTopics = this.state.topics.map( topic => {
@@ -81,6 +79,9 @@ class NavBar extends Component {
         <div id="navbarBasicExample" className={`navbar-menu ${this.state.isActive ? 'is-active' : ''}`}>
           <div className="navbar-start">
             <Link to={`/topics/all`} className="navbar-item navbar-sublasa-item">NewsLetters</Link>
+            {this.props.loggedIn && 
+              <Link to={`/newsletters`} className="navbar-item navbar-sublasa-item">My NewsLetters</Link>
+            }
           </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable navbar-topics">
@@ -91,14 +92,7 @@ class NavBar extends Component {
             </div>
 
             <div className="navbar-item">
-              <div className="buttons">
-                <Link to='/auth' onClick={() => {this.handleauth('signup')}} className="button btn-sublasa btn-sublasa-primary">
-                  Sign up
-                </Link>
-                <Link to='/auth' onClick={() => {this.handleauth('login')}} className="button btn-sublasa btn-sublasa-secondary">
-                  Log in
-                </Link>
-              </div>
+              <AuthSection />
             </div>   
           </div>
         </div>
@@ -109,11 +103,8 @@ class NavBar extends Component {
 
 function mapStateToProps(state) {
   return {
-    signUpActive: state.Auth.signUpActive,
-    type: state.Auth.type
+    loggedIn: state.Auth.loggedIn
   }
 }
 
-const mapDispatchToProps = {updateActiveState, updateType};
-
-export default connect(mapStateToProps,mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps)(NavBar);
