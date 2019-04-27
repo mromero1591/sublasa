@@ -23,6 +23,25 @@ module.exports = {
             res.sendStatus(500);
         })        
     },
+
+    getSubscribedNewsLetters: function(req,res,next) {
+        var currentUser;
+        if(req.session && req.session.user) {
+            currentUser = req.session.user;
+        }
+        var dbInstance = req.app.get('db');
+
+        dbInstance.get_newsletters_by_user([currentUser.id])
+        .then( newsLetters => {
+            console.log(newsLetters);
+            res.status(200).send(newsLetters);
+        }).catch( err => {
+            console.log(err);
+            res.status(500).send({errorMessage: 'error in gett newsletter by user'});
+        })
+        
+    },
+
     getArticles: function(req,res,next) {
         //Purpose: Get all the articles in the database.
         //Params: req: the request from the front end.
@@ -84,7 +103,7 @@ module.exports = {
         //Returns: 4 of the most recent newsletters from the database as an array.
         //Outcome: none
         var dbInstance = req.app.get('db');
-        var {id} = req.params;
+        var id = parseInt(req.params.id);
         dbInstance.get_articles_by_newsletter(id)
         .then(function(articles) {
             var convertedArticles = articles.map(function(article) {

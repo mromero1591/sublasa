@@ -3,15 +3,45 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 //Custom Import
- 
-class SubscribedNewsLetters extends Component {
-  
+import NewsletterSectionDivider from '../NewsletterSectionDivider/NewsletterSectionDivider';
+import NewsletterArticleContainer from '../NewsletterArticleContainer/NewsletterArticleContainer';
+
+import Axios from 'axios';
+
+class SubscribedNewsLetters extends Component {  
+  constructor(props){
+    super(props);
+    this.state = {
+      subscribedNewsLetters: []
+    }
+  }
+  componentDidMount() {
+    Axios.get('/api/subscribed/newsletters')
+    .then( res => {
+      this.setState({
+        subscribedNewsLetters: res.data
+      })
+    })
+  }
   render() {
     var loggedIn = this.props.loggedIn;
+    var displayNewsLetters = this.state.subscribedNewsLetters.map( (newsletter) => {
+      return (
+          <div key={newsletter.id} className="section">
+              <NewsletterSectionDivider name={newsletter.name}/>
+              <NewsletterArticleContainer section='subscribed' newsletter={newsletter}/>
+          </div>
+      );
+    });
     return (
       <div>
         {loggedIn ? (
-          <p>Subscribed newsletters</p>
+          <section className='container'>
+                <div className="section">
+                    <h1 className='title is-uppercase'>My NewsLetters</h1>
+                </div>
+                {displayNewsLetters}
+          </section>
         ) : (
           <Redirect to='/' />
         )}
