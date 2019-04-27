@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {connect} from 'react-redux';
 import Axios from 'axios';
+import {Link} from 'react-router-dom';
 //custom imports
-import {updateActiveState, updateType, updateEmail, updatePassword, updateUser} from '../../ducks/AuthReducer/AuthReducer';
+import {updateActiveState, updateType, updateEmail, updatePassword, updateLoggedIn} from '../../ducks/AuthReducer/AuthReducer';
 import AlertComponent from '../AlertComponent/AlertComponent';
 
 class SignUpModal extends Component {
@@ -16,6 +17,12 @@ class SignUpModal extends Component {
             invalidPasswordLogin: false,
             errorMessage: '',
             showErroMessage: false,
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.email !== prevProps.email) {
+            this.setState({showErroMessage: false, errorMessage: ''});
         }
     }
 
@@ -35,7 +42,7 @@ class SignUpModal extends Component {
         //Outcome: redux state is updated. current state is updated.
 
         //incase current invalid password is set then update to remove validation.
-        if(this.invalidPasswordLogin) {
+        if(this.state.invalidPasswordLogin) {
             this.setState({
                 invalidPasswordLogin: false
             })
@@ -75,7 +82,7 @@ class SignUpModal extends Component {
         //Outcome: login or register is done, and state is updated.
 
         //grab the items needed from props.
-        var {email, password, type, updateEmail, updatePassword, updateUser, updateActiveState} = this.props;
+        var {email, password, type, updateEmail, updatePassword, updateLoggedIn, updateActiveState} = this.props;
 
         //check if email or password is empty. if so add invalid to email and password.
         if( email === '' && password === '') {
@@ -105,13 +112,11 @@ class SignUpModal extends Component {
         //Params: none
         //Return: none
         //Outcome: user is register in the database if all data is correct, if user already exist a warning is given.
-        var {email, password, type, updateEmail, updatePassword, updateUser, updateActiveState} = this.props;
+        var {email, password, type, updateEmail, updatePassword, updateLoggedIn, updateActiveState} = this.props;
         //run the registration end point. pass in the email and password.
         Axios.post('/auth/register', {username: email, email: email, password: password})
         .then(res => {
-            var {id, email, last_login} = res.data.user;
-            updateUser({id: id, email: email, lastLogin: last_login});
-            updateActiveState(false);
+            this.handleSucessfulAuth(); 
 
         }).catch(err => { //if there is an error registering handle the errors.
             //update state to show the error message.
@@ -130,13 +135,12 @@ class SignUpModal extends Component {
         //Params: none
         //Return: none
         //Outcome: user is added to redux sucessfully if user exist, else error is given.
-        var {email, password, type, updateEmail, updatePassword, updateUser, updateActiveState} = this.props;
+        var {email, password, type, updateEmail, updatePassword, updateLoggedIn, updateActiveState} = this.props;
         Axios.post('/auth/login', {email: email, password: password})
         .then( res => {
-            var {id, email, last_login} = res.data.user;
-            updateUser({id: id, email: email, lastLogin: last_login});
-            updateActiveState(false);
+            this.handleSucessfulAuth();    
         }).catch( err => {
+            console.log(err);
             this.setState({
                 errorMessage: err.response.data.message,
                 showErroMessage: true,
@@ -158,7 +162,16 @@ class SignUpModal extends Component {
         })
     }
 
+    handleSucessfulAuth = () => {
+        //close the sign up screen
+        updateActiveState(false);
+        updateLoggedIn(true);
+        //redirect to the newsletter section.
+        this.props.history.push('/newsletters'); 
+    }
+
     render() {
+
         return(
             <div className={`modal ${this.props.signUpActive ? 'is-active is-clipped' : ''}`}>
                 <div className="modal-background"></div>
@@ -199,14 +212,16 @@ class SignUpModal extends Component {
                             </div>
                         </div>
                         <div className="modal-button-container">
-                            <li onClick={this.runAuth} className="button btn-sublasa btn-sublasa-primary">{this.props.type === 'signup' ? 'Join' : 'Login' }</li>
-                            <li onClick={() => {this.props.updateActiveState(false)}} className="button btn-sublasa btn-sublasa-secondary">Cancel</li>
+                            <li onClick={() => {this.runAuth()}} className="button btn-sublasa btn-sublasa-primary">{this.props.type === 'signup' ? 'Join' : 'Login' }</li>
+                            <Link to='/' onClick={() => {this.props.updateActiveState(false)}} className="button btn-sublasa btn-sublasa-secondary">Cancel</Link>
                         </div>
                     </section>
                 </div>
             </div>
         )
     }
+
+
 }
 
 function mapStateToProps(state) {
@@ -220,6 +235,6 @@ function mapStateToProps(state) {
     }
   }
   
-const mapDispatchToProps = {updateActiveState, updateType, updateEmail, updatePassword, updateUser};
+const mapDispatchToProps = {updateActiveState, updateType, updateEmail, updatePassword, updateLoggedIn};
 
 export default connect(mapStateToProps,mapDispatchToProps)(SignUpModal);

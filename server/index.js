@@ -132,7 +132,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.post('/auth/register', passport.authenticate('register', { failWithError: true }), (req,res) => {
-    res.send({ message: 'Successfully registered', user: req.user });
+    //set cookie for session
+    req.session.user = req.user;
+    res.send({ message: 'Successfully registered', loggedIn: true });
 },(err, req, res, next) => {
     res.status(500);
     
@@ -144,7 +146,10 @@ app.post('/auth/register', passport.authenticate('register', { failWithError: tr
 });
 
 app.post('/auth/login', passport.authenticate('login'), (req, res) => {
-    res.send({ message: 'Successfully logged in', user: req.user });
+    //set cookie for session
+    req.session.user = req.user;
+    
+    res.send({ message: 'Successfully logged in'});
 },(err, req, res, next) => {
     res.status(500);
     

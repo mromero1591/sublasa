@@ -8,7 +8,9 @@ module.exports = {
         //Returns: all newsletters from the database as an array.
         //Outcome: none
         gmailController.runEmailController(req.app);
+
         var dbInstance = req.app.get('db');
+        
         dbInstance.get_newsletters()
         .then(newsLetters => {
             res.status(200).send(newsLetters);

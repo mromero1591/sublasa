@@ -5,18 +5,14 @@ var initalState = {
     type: '',
     email: '',
     password: '',
-    user: {
-        id: -1,
-        email: '',
-        lastLogin: ''
-    }
+    loggedIn: false
 }
 
 const UPDATE_ACTIVE_STATE = 'UPDATE_ACTIVE_STATE';
 const UPDATE_TYPE = 'UPDATE_TYPE';
 const UPDATE_EMAIL = 'UPDATE_EMAIL';
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
-const UPDATE_USER = 'UPDATE_USER';
+const UPDATE_LOGIN = 'UPDATE_LOGIN';
 
 function reducer(state=initalState, action) {
     switch (action.type) {
@@ -40,14 +36,10 @@ function reducer(state=initalState, action) {
                 ...state,
                 password: action.payLoad
             }
-        case UPDATE_USER:
+        case UPDATE_LOGIN:
             return {
                 ...state,
-                user: {
-                    id: action.payLoad.id,
-                    email: action.payLoad.email,
-                    lastLogin: action.payLoad.lastLogin
-                }
+                loggedIn: action.payLoad
             }
         default:
             return state
@@ -82,11 +74,11 @@ export function updatePassword(password) {
     }
 }
 
-export function updateUser(user) {
+export function updateLoggedIn(loggedIn) {
     return {
-        type: UPDATE_USER,
+        type: UPDATE_LOGIN,
         payLoad: {
-            ...user
+            ...loggedIn
         }
     }
 }

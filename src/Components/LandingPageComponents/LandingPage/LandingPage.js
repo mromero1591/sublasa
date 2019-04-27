@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 //Custom Import
 import LandingBanner from '../LandingBanner/LandingBanner';
@@ -57,7 +58,7 @@ class LandingPage extends Component {
         <SectionDivder name='Subscribe' />
         <section className='subscribe-section'>
           <p className=''>Join the Largest and Most Innovative Newsletter</p>
-          <button onClick={() => {this.handleauth('signup')}} className='button btn-sublasa-primary is-large btn-sublasa-action'> Join </button>
+          <Link to='auth' onClick={() => {this.handleauth('signup')}} className='button btn-sublasa-primary is-large btn-sublasa-action'> Join </Link>
         </section>
       </section>
     )

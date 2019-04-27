@@ -92,12 +92,12 @@ class NavBar extends Component {
 
             <div className="navbar-item">
               <div className="buttons">
-                <li onClick={() => {this.handleauth('signup')}} className="button btn-sublasa btn-sublasa-primary">
+                <Link to='/auth' onClick={() => {this.handleauth('signup')}} className="button btn-sublasa btn-sublasa-primary">
                   Sign up
-                </li>
-                <li onClick={() => {this.handleauth('login')}} className="button btn-sublasa btn-sublasa-secondary">
+                </Link>
+                <Link to='/auth' onClick={() => {this.handleauth('login')}} className="button btn-sublasa btn-sublasa-secondary">
                   Log in
-                </li>
+                </Link>
               </div>
             </div>   
           </div>

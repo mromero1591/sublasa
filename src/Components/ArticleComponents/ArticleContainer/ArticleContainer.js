@@ -28,7 +28,7 @@ class ArticleContainer extends Component {
             this.setState({
                 currentArticle: newArtcile
             })
-            var div = document.getElementById('test');
+            var div = document.getElementById('article');
             div.innerHTML = this.state.currentArticle.content;
         }).catch(err => {
             console.log('error in getting the article', err);
@@ -40,7 +40,7 @@ class ArticleContainer extends Component {
             <section className='container '>
                 <ArticleNavigation goBack={this.props.history.goBack}  title={this.state.currentArticle.title} />
                 <div className="continer article-container">
-                    <div id='test'></div>
+                    <div id='article'></div>
                 </div>
             </section>
         )

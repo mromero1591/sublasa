@@ -47,7 +47,6 @@ class AlertComponent extends Component {
     render() {
         return (
             <div className="notification is-danger">
-                <button className="delete"></button>
                 {this.props.message} { this.state.userExist &&
                     <a onClick={this.updateAuth}>Log in Instead</a>
                 }
