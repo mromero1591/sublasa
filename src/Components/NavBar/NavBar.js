@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom';
 import Axios from 'axios';
+import {connect} from 'react-redux';
 
-export default class NavBar extends Component {
+//custom imports
+import {updateActiveState, updateType} from '../../ducks/AuthReducer/AuthReducer';
+
+class NavBar extends Component {
 
   constructor(props) {
     super(props);
@@ -45,6 +49,13 @@ export default class NavBar extends Component {
     })
   }
 
+  handleauth = (type) => {
+    var {signUpActive, updateActiveState, updateType} = this.props;
+    var newState = signUpActive ?  false : true;
+    updateActiveState(newState);
+    updateType(type);
+  }
+
   render() {
     //Map through the topics, and create a link for each topic.
     var displayTopics = this.state.topics.map( topic => {
@@ -81,12 +92,12 @@ export default class NavBar extends Component {
 
             <div className="navbar-item">
               <div className="buttons">
-                <Link onClick={this.props.toggleSignUp} to='/' className="button btn-sublasa btn-sublasa-primary">
+                <li onClick={() => {this.handleauth('signup')}} className="button btn-sublasa btn-sublasa-primary">
                   Sign up
-                </Link>
-                <Link to='/' className="button btn-sublasa btn-sublasa-secondary">
+                </li>
+                <li onClick={() => {this.handleauth('login')}} className="button btn-sublasa btn-sublasa-secondary">
                   Log in
-                </Link>
+                </li>
               </div>
             </div>   
           </div>
@@ -95,3 +106,14 @@ export default class NavBar extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    signUpActive: state.Auth.signUpActive,
+    type: state.Auth.type
+  }
+}
+
+const mapDispatchToProps = {updateActiveState, updateType};
+
+export default connect(mapStateToProps,mapDispatchToProps)(NavBar);

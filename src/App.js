@@ -7,25 +7,18 @@ import NavBar from './Components/NavBar/NavBar';
 import routes from './routes';
 import Footer from './Components/Footer/Footer';
 import SignUpModal from './Components/SignUpModal/SignUpModal';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope,faCheck,faLock, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faEnvelope,faCheck,faLock,faExclamationTriangle);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      signUpActive: false
-    }
-  }
-
-  toggleSignUp = () => {
-    var signUpState = this.state.signUpActive ? false : true;
-    this.setState({signUpActive: signUpState});
-  }
-
   render() {
     return (
       <main>
-        <NavBar toggleSignUp={this.toggleSignUp} />
-        <SignUpModal toggleSignUp={this.toggleSignUp} active={this.state.signUpActive} />
+        <NavBar />
+        <SignUpModal />
         {routes}
         <Footer />
       </main>

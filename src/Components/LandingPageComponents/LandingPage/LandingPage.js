@@ -1,15 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 //Custom Import
 import LandingBanner from '../LandingBanner/LandingBanner';
 import SectionDivder from '../SectionDivider/SectionDivider';
+import {updateActiveState, updateType} from '../../../ducks/AuthReducer/AuthReducer';
 
 //asset import
 import chip from '../../../assets/imgs/chip-head.svg';
 import monitor from '../../../assets/imgs/monitor-window.svg';
 import writePaper from '../../../assets/imgs/write-paper-ink.svg';
 
-export default class LandingPage extends Component {
+
+class LandingPage extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleauth = (type) => {
+    var {signUpActive, updateActiveState, updateType} = this.props;
+    var newState = signUpActive ?  false : true;
+    updateActiveState(newState);
+    updateType(type);
+  }
+
   render() {
     return (
       <section className="landingPage">
@@ -43,9 +57,21 @@ export default class LandingPage extends Component {
         <SectionDivder name='Subscribe' />
         <section className='subscribe-section'>
           <p className=''>Join the Largest and Most Innovative Newsletter</p>
-          <button className='button btn-sublasa-primary is-large btn-sublasa-action'> Join </button>
+          <button onClick={() => {this.handleauth('signup')}} className='button btn-sublasa-primary is-large btn-sublasa-action'> Join </button>
         </section>
       </section>
     )
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    signUpActive: state.Auth.signUpActive,
+    type: state.Auth.type
+  }
+}
+
+const mapDispatchToProps = {updateActiveState, updateType};
+
+export default connect(mapStateToProps,mapDispatchToProps)(LandingPage);

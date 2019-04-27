@@ -198,6 +198,17 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     grid-column: 2/3;
 }
 
+.valid-check {
+    color: $primary-color;
+    background-color: #70788e;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.authentication-modal {
+    background-color: #c8c8c8
+}
+
 @media only screen and (min-width: $breakpoint-tablet) {
     .navbar {
         padding: 10px 10% 0px;
@@ -245,5 +256,18 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     .article-navigation {
         position: fixed;
     }
-    
+    .modal-button-container {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+
+        .btn-sublasa {
+            margin-right: 10px;
+        }
+
+        .btn-sublasa-primary {
+            padding-right: 40px;
+            padding-left: 40px;
+        }
+    }
 }

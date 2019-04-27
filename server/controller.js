@@ -2,6 +2,7 @@ const gmailController = require('./gmailController');
 
 module.exports = {
     getNewsLetters: function(req,res,next) {
+
         //Purpose: Get all the newsletters in the database
         //Params: req: the request from the front end
         //Returns: all newsletters from the database as an array.
@@ -13,8 +14,7 @@ module.exports = {
             res.status(200).send(newsLetters);
         }).catch(err => {
             res.sendStatus(500);
-        })
-        
+        })        
     },
     getArticles: function(req,res,next) {
         //Purpose: Get all the articles in the database.
@@ -96,7 +96,6 @@ module.exports = {
             res.sendStatus(500);
         })
     },
-
     getArticleById: function(req,res,next) {
         //Purpose: Get one article from the databse, by id
         //Params: req: the request from the front end
