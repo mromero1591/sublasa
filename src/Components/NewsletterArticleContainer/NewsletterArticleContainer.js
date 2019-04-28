@@ -11,7 +11,7 @@ class NewsletterArticleContainer extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    var newsletterId = this.props.section === 'subscribed' ? this.props.newsletter.newsletter_id : this.props.newsletter.id;
+    var newsletterId = this.props.newsletter.id;
 
     Axios.get(`/api/newsletter/${newsletterId}/articles`)
     .then(res => {
@@ -29,7 +29,7 @@ class NewsletterArticleContainer extends Component {
 
   render() {
     var displayNewsletterArticles = this.props.articles.map( (article, index) => {
-      if(article.newsletter_id === this.props.newsletter.id || article.newsletter_id === this.props.newsletter.newsletter_id) {
+      if(article.newsletter_id === this.props.newsletter.id) {
         var backgroundColor = '#3e4c4f';
 
         if(index % 2 !== 0) {

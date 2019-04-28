@@ -5,31 +5,26 @@ import {Redirect} from 'react-router-dom';
 //Custom Import
 import NewsletterSectionDivider from '../NewsletterSectionDivider/NewsletterSectionDivider';
 import NewsletterArticleContainer from '../NewsletterArticleContainer/NewsletterArticleContainer';
+import {updateSubscribed} from '../../ducks/newsletterRecudcer/newsletterReduce';
 
 import Axios from 'axios';
 
 class SubscribedNewsLetters extends Component {  
-  constructor(props){
-    super(props);
-    this.state = {
-      subscribedNewsLetters: []
-    }
-  }
   componentDidMount() {
     Axios.get('/api/subscribed/newsletters')
     .then( res => {
-      this.setState({
-        subscribedNewsLetters: res.data
-      })
+      console.log(this.props);
+      this.props.updateSubscribed(res.data);
     })
   }
   render() {
     var loggedIn = this.props.loggedIn;
-    var displayNewsLetters = this.state.subscribedNewsLetters.map( (newsletter) => {
+    var displayNewsLetters = this.props.subscribedNewsLetters.map( (newsletter) => {
+      
       return (
           <div key={newsletter.id} className="section">
-              <NewsletterSectionDivider name={newsletter.name}/>
-              <NewsletterArticleContainer section='subscribed' newsletter={newsletter}/>
+              <NewsletterSectionDivider name={newsletter.name} />
+              <NewsletterArticleContainer newsletter={newsletter} />
           </div>
       );
     });
@@ -52,8 +47,11 @@ class SubscribedNewsLetters extends Component {
 
 function mapStateToProps(state) {
   return {
-    loggedIn: state.Auth.loggedIn
+    loggedIn: state.Auth.loggedIn,
+    subscribedNewsLetters: state.newsletter.subscribedNewsLetters
   }
 }
 
-export default connect(mapStateToProps) (SubscribedNewsLetters);
+const mapDispatchToProps = {updateSubscribed};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SubscribedNewsLetters);

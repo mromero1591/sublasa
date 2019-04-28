@@ -145,6 +145,9 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
 
 .newsletter-divider-title {
     font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 
@@ -230,6 +233,10 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     
     .newsletter-divider-title {
         font-size: 1.5em;
+
+        .btn-subscribe-section {
+            
+        }
     }
 
     .newsletter-article-container {

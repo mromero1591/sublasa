@@ -1,5 +1,5 @@
 SELECT
-    n.id AS newsletter_id,
+    n.id,
     n.name,
     n.topic_id,
     n.snippet,

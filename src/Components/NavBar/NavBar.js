@@ -36,12 +36,6 @@ class NavBar extends Component {
     })
   }
 
-  componentDidUpdate(prevProps) {
-    if(this.props.loggedIn !== prevProps.loggedIn) {
-      console.log('loggedIn changed');
-    }
-  }
-
   handleNavbarMenu = () => {
     //Purpose: toogle the menu from showing to not.
     //Params: none

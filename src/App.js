@@ -23,7 +23,6 @@ class App extends Component {
       if(res.data.loggedIn) {
         this.props.updateLoggedIn(res.data.loggedIn);
       }
-      console.log(res.data);
     }).catch(err => {
       console.log('erro in app get:', err);
     })

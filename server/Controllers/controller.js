@@ -143,5 +143,20 @@ module.exports = {
             console.log(err);
             res.sendStatus(500);
         })
+    },
+    subscribeToNewsLetter: function(req,res,next) {
+        if(req.session && req.session.user) {
+            var currentUser;
+            var dbInstance = req.app.get('db');
+            var {user_id, newsletter_id} = req.body;
+            var dbInstance = req.app.get('db');
+
+            dbInstance.subscribe_to_newsletter([user_id, newsletter_id])
+            .then( res => {
+                res.status(200).send({message: 'sucessfully subscribe'});
+            }).catch(err => {
+                res.status(500).send({message: 'faced erro in subscribing' });
+            });
+        }
     }
 }

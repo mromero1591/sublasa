@@ -135,7 +135,7 @@ class SignUpModal extends Component {
         //Params: none
         //Return: none
         //Outcome: user is added to redux sucessfully if user exist, else error is given.
-        var {email, password, type, updateEmail, updatePassword, updateLoggedIn, updateActiveState} = this.props;
+        var {email, password } = this.props;
         Axios.post('/auth/login', {email: email, password: password})
         .then( res => {
             this.handleSucessfulAuth();    
