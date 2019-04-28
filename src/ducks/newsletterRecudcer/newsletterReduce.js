@@ -12,6 +12,7 @@ function reducer(state = initalState, action) {
     switch (action.type) {
         case UPDATE_NEWSLETTERS:
             return {
+                ...state,
                 newsletters: action.payLoad
             }
         case UPDATE_SUBSCRIBED:

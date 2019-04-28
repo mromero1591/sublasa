@@ -33,7 +33,6 @@ module.exports = {
 
         dbInstance.get_newsletters_by_user([currentUser.id])
         .then( newsLetters => {
-            console.log(newsLetters);
             res.status(200).send(newsLetters);
         }).catch( err => {
             console.log(err);
@@ -146,16 +145,16 @@ module.exports = {
     },
     subscribeToNewsLetter: function(req,res,next) {
         if(req.session && req.session.user) {
-            var currentUser;
+            var user_id = req.session.user.id;
             var dbInstance = req.app.get('db');
-            var {user_id, newsletter_id} = req.body;
+            var id = parseInt(req.params.id); 
             var dbInstance = req.app.get('db');
 
-            dbInstance.subscribe_to_newsletter([user_id, newsletter_id])
-            .then( res => {
+            dbInstance.subscribe_to_newsletter([user_id, id])
+            .then( () => {
                 res.status(200).send({message: 'sucessfully subscribe'});
             }).catch(err => {
-                res.status(500).send({message: 'faced erro in subscribing' });
+                res.status(500).send({message: 'faced erro in subscribing', err });
             });
         }
     }

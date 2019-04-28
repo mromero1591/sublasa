@@ -82,7 +82,7 @@ class SignUpModal extends Component {
         //Outcome: login or register is done, and state is updated.
 
         //grab the items needed from props.
-        var {email, password, type, updateEmail, updatePassword, updateLoggedIn, updateActiveState} = this.props;
+        var {email, password, type, updateEmail, updatePassword} = this.props;
 
         //check if email or password is empty. if so add invalid to email and password.
         if( email === '' && password === '') {
@@ -112,7 +112,7 @@ class SignUpModal extends Component {
         //Params: none
         //Return: none
         //Outcome: user is register in the database if all data is correct, if user already exist a warning is given.
-        var {email, password, type, updateEmail, updatePassword, updateLoggedIn, updateActiveState} = this.props;
+        var {email, password} = this.props;
         //run the registration end point. pass in the email and password.
         Axios.post('/auth/register', {username: email, email: email, password: password})
         .then(res => {
@@ -235,6 +235,6 @@ function mapStateToProps(state) {
     }
 }
   
-const mapDispatchToProps = {updateActiveState, updateType, updateEmail, updatePassword, updateLoggedIn};
+const mapDispatchToProps = {updateActiveState, updateType, updateEmail, updatePassword,updateLoggedIn};
 
 export default connect(mapStateToProps,mapDispatchToProps)(SignUpModal);

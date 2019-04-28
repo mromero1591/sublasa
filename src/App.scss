@@ -147,7 +147,7 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     font-size: 1.5em;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    
 }
 
 
@@ -235,7 +235,7 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
         font-size: 1.5em;
 
         .btn-subscribe-section {
-            
+            margin-left: 20px;
         }
     }
 
@@ -262,6 +262,18 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     
     .article-navigation {
         position: fixed;
+
+        .article-navigation-button {
+            padding: 10px;
+            text-align: center;
+        }
+        .article-navigation-button:hover {
+            cursor: pointer;
+            background-color: #b1b8cd;
+            color: $primary-color;
+            border-radius: 20px;
+            
+        }
     }
     .modal-button-container {
         display: flex;

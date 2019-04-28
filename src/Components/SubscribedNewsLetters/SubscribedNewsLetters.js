@@ -23,7 +23,7 @@ class SubscribedNewsLetters extends Component {
       
       return (
           <div key={newsletter.id} className="section">
-              <NewsletterSectionDivider name={newsletter.name} />
+              <NewsletterSectionDivider newsletter={newsletter} />
               <NewsletterArticleContainer newsletter={newsletter} />
           </div>
       );

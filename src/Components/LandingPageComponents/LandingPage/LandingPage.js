@@ -14,10 +14,6 @@ import writePaper from '../../../assets/imgs/write-paper-ink.svg';
 
 
 class LandingPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleauth = (type) => {
     var {signUpActive, updateActiveState, updateType} = this.props;
     var newState = signUpActive ?  false : true;
@@ -25,6 +21,7 @@ class LandingPage extends Component {
     updateType(type);
   }
 
+  
   render() {
     return (
       <section className="landingPage">

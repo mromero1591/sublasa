@@ -1,5 +1,3 @@
-import { userInfo } from "os";
-
 var initalState = {
     signUpActive: false,
     type: '',
