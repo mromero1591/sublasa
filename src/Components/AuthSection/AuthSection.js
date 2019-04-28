@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 
 import {updateActiveState, updateType, updateLoggedIn} from '../../ducks/AuthReducer/AuthReducer';
+import {updateSubscribed} from '../../ducks/newsletterRecudcer/newsletterReduce';
 import Axios from 'axios';
 
 class AuthSection extends Component {
@@ -21,7 +22,7 @@ class AuthSection extends Component {
         //call the logout endpoint
         Axios.get('/auth/logout')
         .then( res => {
-            console.log(res);
+            this.props.updateSubscribed([]);
         }).catch( err => {
             console.log('erro in loggin out', err);
         })
@@ -60,6 +61,6 @@ function mapStateToProps(state) {
     }
   }
 
-const mapDispatchToProps = {updateActiveState, updateType, updateLoggedIn};
+const mapDispatchToProps = {updateActiveState, updateType, updateLoggedIn,updateSubscribed};
 
 export default connect(mapStateToProps,mapDispatchToProps)(AuthSection);

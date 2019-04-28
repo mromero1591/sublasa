@@ -7,7 +7,7 @@ class ArticleNavigation extends Component {
    
     render() {
         return (
-            <aside class="menu article-navigation-wrapper">
+            <aside className="menu article-navigation-wrapper">
                 <div className='article-navigation'>
                     <ul className="menu-list">
                         <li onClick={this.props.goBack}><p className='article-navigation-button'>Go Back</p></li>

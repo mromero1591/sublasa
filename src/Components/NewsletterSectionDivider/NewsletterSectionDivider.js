@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
 import SubscribeButton from '../SubscribeButton/SubscribeButton';
@@ -43,7 +43,7 @@ function NewsletterSection(props) {
         })
     }
 
-    var subscribed = isSubscribed(props.newsletter, props.subscribedNewsLetters);
+    var subscribed = props.loggedIn ? isSubscribed(props.newsletter, props.subscribedNewsLetters) : true;
     return(
         <div className='newsletter-section-divider'>
             <h1 className='newsletter-divider-title'>{props.newsletter.name} {!subscribed && <SubscribeButton subscribe={subscibeToNewsletter} />}</h1>
@@ -55,7 +55,8 @@ function NewsletterSection(props) {
 
 function mapStateToProps(state) {
     return {
-        subscribedNewsLetters: state.newsletter.subscribedNewsLetters
+        subscribedNewsLetters: state.newsletter.subscribedNewsLetters,
+        loggedIn: state.Auth.loggedIn
     }
 }
 

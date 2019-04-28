@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 
 //custom imports
 import AuthSection from '../AuthSection/AuthSection';
+import {updateTopics} from '../../ducks/newsletterRecudcer/newsletterReduce';
+
 
 class NavBar extends Component {
 
@@ -27,6 +29,7 @@ class NavBar extends Component {
     .then(res => {
       //if a topic is returned then set topics on state.
       var newTopics = res.data;
+      this.props.updateTopics(newTopics);
       this.setState({
         topics: newTopics,
       });
@@ -101,4 +104,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = {updateTopics};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
