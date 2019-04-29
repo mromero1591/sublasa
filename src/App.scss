@@ -1,5 +1,8 @@
 @charset "utf-8";
+
+$navbar-breakpoint: 769px;
 @import "../node_modules/bulma/bulma.sass";
+
 
 $primary-color: #F8E196;
 $breakpoint-tablet: 768px;
@@ -32,6 +35,15 @@ $breakpoint-tablet: 768px;
     background-color: $primary-color;
     color: black;
     border: none;
+}
+
+.btn-sublasa-primary:hover {
+    transform: scale(.99);
+    
+}
+
+.btn-sublasa-secondary:hover {
+    transform: scale(.99);
 }
 
 .btn-sublasa-secondary {
@@ -196,9 +208,15 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     grid-row: 3/4;
     grid-column: 1/4;
 }
+
 .article-container {
     grid-row: 2/3;
     grid-column: 2/3;
+}
+
+.btn-article-read:hover {
+    background-color: white;
+    border: 2px $primary-color solid;    
 }
 
 .valid-check {

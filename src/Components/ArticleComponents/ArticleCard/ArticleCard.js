@@ -20,7 +20,7 @@ function ArticleCard(props) {
     return (
         <div className='box newsletter-article-card' style={backGroundCard()}>
             <p>{props.article.title}</p>
-            <Link to={`/articles/${props.article.id}`} className='button btn-sublasa btn-sublasa-primary' >
+            <Link to={`/articles/${props.article.id}`} className='button btn-sublasa btn-sublasa-primary btn-article-read' >
                 Read
             </Link>
         </div>
