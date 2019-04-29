@@ -8,12 +8,14 @@ class ArticleContainer extends Component {
         super(props);
         this.state = {
             currentArticle: {
-            }
+            },
+            isTop: true
         }
         document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
 
     componentDidMount() { 
+        window.addEventListener('scroll', this.handleScroll);
         var id = this.props.match.params.id;
         Axios.get(`/api/articles/${id}`)
         .then(res => {
@@ -35,10 +37,20 @@ class ArticleContainer extends Component {
         })
     }
 
+    handleScroll = (event) => {
+        if(document.documentElement.scrollTop !== 0) {
+            this.setState({isTop: false});
+        } else {
+            if(this.state.scrollTop !== true) {
+                this.setState({isTop: true});
+            }
+        }
+    }
+
     render() {
         return(
             <section className='container '>
-                <ArticleNavigation goBack={this.props.history.goBack}  title={this.state.currentArticle.title} />
+                <ArticleNavigation isTop={this.state.isTop} goBack={this.props.history.goBack}  title={this.state.currentArticle.title} />
                 <div className="continer article-container">
                     <div id='article'></div>
                 </div>

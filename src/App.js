@@ -6,7 +6,7 @@ import Axios from 'axios';
 import './App.scss';
 
 //Custom Imports
-import NavBar from './Components/NavBar/NavBar';
+import NavBar from './Components/NavbarComponents/NavBar/NavBar';
 import routes from './routes';
 import Footer from './Components/Footer/Footer';
 

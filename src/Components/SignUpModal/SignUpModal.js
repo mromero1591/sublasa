@@ -99,57 +99,28 @@ class SignUpModal extends Component {
             if(type === 'signup') { //if type is sign up then register the new user.
                 //run sign up code.
                 this.runRegsitration();
+                this.runUserAuth('/auth/register');
             } else {
                 //run login code.
-                this.runLogin();
+                //this.runLogin();
+                this.runUserAuth('/auth/login');
             }
             updateEmail('');
             updatePassword('');
         }
     }
 
-    runRegsitration = () => {
-        //Purpose: registers a user.
-        //Params: none
-        //Return: none
-        //Outcome: user is register in the database if all data is correct, if user already exist a warning is given.
-        var {email, password} = this.props;
-        //run the registration end point. pass in the email and password.
-        Axios.post('/auth/register', {username: email, email: email, password: password})
-        .then(res => {
-            this.handleSucessfulAuth(); 
-
-        }).catch(err => { //if there is an error registering handle the errors.
-            //update state to show the error message.
-            this.setState({
-                errorMessage: err.response.data.message,
-                showErroMessage: true,
-                validEmail: false,
-                invalidEmailLogin: false,
-                invalidPasswordLogin: false
-            })
-        });
-        this.setState({loggingIn: true});
-    }
-
-    runLogin = () => {
-        //Purpose: runs the auth for login.
+    runUserAuth = (endPoint) => {
+        //Purpose: runs the auth for login or regsiter.
         //Params: none
         //Return: none
         //Outcome: user is added to redux sucessfully if user exist, else error is given.
         var {email, password } = this.props;
-        Axios.post('/auth/login', {email: email, password: password})
+        Axios.post(`${endPoint}`, {username: email, email: email, password: password})
         .then( res => {
             this.handleSucessfulAuth();    
         }).catch( err => {
-            console.log(err);
-            this.setState({
-                errorMessage: err.response.data.message,
-                showErroMessage: true,
-                validEmail: false,
-                invalidEmailLogin: false,
-                invalidPasswordLogin: false
-            })
+            this.handleErrorAuth(err.response.data.message);
         });
 
         this.setState({loggingIn: true});
@@ -171,6 +142,18 @@ class SignUpModal extends Component {
         this.props.updateLoggedIn(true);
         //redirect to the newsletter section.
         this.props.history.push('/newsletters'); 
+    }
+
+    handleErrorAuth = (message) => {
+        //update state to show the error message.
+        this.setState({
+            errorMessage: message,
+            showErroMessage: true,
+            validEmail: false,
+            invalidEmailLogin: false,
+            invalidPasswordLogin: false,
+            loggingIn: false,
+        })
     }
 
     render() {

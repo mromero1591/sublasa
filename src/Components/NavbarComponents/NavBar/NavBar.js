@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
 import Axios from 'axios';
 import {connect} from 'react-redux';
 
 //custom imports
-import AuthSection from '../AuthSection/AuthSection';
-import {updateTopics} from '../../ducks/newsletterRecudcer/newsletterReduce';
-
+import AuthSection from '../../AuthSection/AuthSection';
+import {updateTopics} from '../../../ducks/newsletterRecudcer/newsletterReduce';
+import NavBarLink from '../NavBarLink/NavBarLink';
+import NavBarHam from '../NavBarHam/NavBarHam';
 
 class NavBar extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -51,43 +50,38 @@ class NavBar extends Component {
       isActive: newIsActive
     })
   }
+
   render() {
     //Map through the topics, and create a link for each topic.
     var displayTopics = this.state.topics.map( topic => {
       return(
-        <Link to={`/topics/${topic.name}`} className="navbar-item" key={topic.id}>{topic.name}</Link>
+        <NavBarLink path={`/topics/${topic.name}`} key={topic.id} name={topic.name} />
       );
     })
 
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-             <Link to='/' className='navbar-item' id='navbar-logo-link'>
-               <div className='nav-bar-logo'>Sub<span>lasa</span></div>
-             </Link>
-
-             <button onClick={this.handleNavbarMenu} className={`button is-white navbar-burger burger ${this.state.isActive ? 'is-active' : ''}`} aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-              <span aria-hidden="true"></span>
-            </button>
+            <div className='navbar-item' id='navbar-logo-link'>
+              <div className='nav-bar-logo'>Sub<span>lasa</span></div>
+            </div>
+            <NavBarHam toggleMenu={this.handleNavbarMenu} isActive={this.state.isActive}/>
         </div>
       
         <div id="navbarBasicExample" className={`navbar-menu ${this.state.isActive ? 'is-active' : ''}`}>
           <div className="navbar-start">
-            <Link to={`/topics/all`} className="navbar-item navbar-sublasa-item">NewsLetters</Link>
+            <NavBarLink path='/topics/all' name='NewsLetters' />
             {this.props.loggedIn && 
-              <Link to={`/newsletters`} className="navbar-item navbar-sublasa-item">My NewsLetters</Link>
+              <NavBarLink path='/newsletters' name='My NewsLetters' />
             }
           </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable navbar-topics">
-              <Link to='#' className='navbar-link'>Topics</Link>
+              <div className='navbar-link'>Topics</div>
               <div className="navbar-dropdown is-boxed">
                 {displayTopics}
               </div>
             </div>
-
             <div className="navbar-item">
               <AuthSection />
             </div>   
