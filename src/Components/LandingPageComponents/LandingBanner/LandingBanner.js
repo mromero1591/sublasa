@@ -4,7 +4,6 @@ export default class LandingBanner extends Component {
   render() {
     return (
       <div>
-        
       </div>
     )
   }

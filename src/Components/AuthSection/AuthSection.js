@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {updateActiveState, updateType, updateLoggedIn} from '../../ducks/AuthReducer/AuthReducer';
 import {updateSubscribed} from '../../ducks/newsletterRecudcer/newsletterReduce';
@@ -35,16 +36,16 @@ class AuthSection extends Component {
                 {!loggedIn ? (
                     <div className="buttons">
                         <Link to='/auth' onClick={() => {this.handleauth('signup')}} className="button btn-sublasa btn-sublasa-primary">
-                        Sign up
+                        <FontAwesomeIcon icon='user-plus' /> Sign up
                         </Link>
                         <Link to='/auth' onClick={() => {this.handleauth('login')}} className="button btn-sublasa btn-sublasa-secondary">
-                        Log in
+                        <FontAwesomeIcon icon="sign-in-alt" /> Log in
                         </Link>
                     </div>
                 ) : (
                     <div className="buttons">
                         <Link to='/' onClick={this.handleLogout} className="button btn-sublasa btn-sublasa-secondary">
-                        Log Out
+                        <FontAwesomeIcon icon="sign-out-alt" /> Log Out
                         </Link>
                     </div>
                 )}

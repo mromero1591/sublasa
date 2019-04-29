@@ -110,17 +110,6 @@ function getSubjectLine(headers) {
     return ObjSubjectLine.value;
 }
 
-//Purpose: Get the body from a specific message
-//Params: Obj, A res that contains a messages info.
-//Return: String, the contents of the message
-// function getMessageContent(res) {
-//     var messageRaw = res['data']['payload']['parts'][0].body.data;
-//     // var data = messageRaw;  
-//     // var buff = new Buffer.from(data, 'base64');  
-//     // var text = buff.toString();
-//     return text;
-// }
-
 function readEmails(gmail, id, dbInstance) {
     gmail.users.messages.get({
       userId: 'me',
@@ -137,7 +126,7 @@ function readEmails(gmail, id, dbInstance) {
             //get the subject line
             var headers = res.data.payload.headers;
             var subjectLine = getSubjectLine(headers)
-//console.log('SUBJECT:',subjectLine);
+console.log('SUBJECT:',subjectLine);
 //console.log('LABEL', newsLetterId);
 
             //get the body of a message
@@ -150,7 +139,9 @@ function readEmails(gmail, id, dbInstance) {
                         content = body[i].body.data;
                     }
                 }
-                content = res['data']['payload']['parts'][1].body.data;
+                if( content === ''){
+                    content = res['data']['payload']['parts'][1].body.data
+                };
                 snippet = res.data.snippet;
             } else {
                 content = res.data.payload.body.data;
@@ -162,8 +153,7 @@ function readEmails(gmail, id, dbInstance) {
             
             //check to make sure snippet is not greater then 100 char.
             snippet = trimToHundered(snippet);
-//console.log('snippet:', snippet);
-//console.log(content);
+
             //========insert article into the database
             dbInstance.insert_article([subjectLine,snippet,subjectLine,content,newsLetterId])
             .then(res => {
@@ -235,6 +225,10 @@ function getNewsletterId(labels) {
         commandLine: {
             labelId: 'Label_5869856446733675402',
             databaseId: 1
+        },
+        theSkimm: {
+            labelId: 'Label_3573153940664208936',
+            databaseId: 7
         }
     }
 
@@ -256,6 +250,9 @@ function getNewsletterId(labels) {
     }
     if(labels.includes(NEWSLETTER_IDS.commandLine.labelId)) {
         return NEWSLETTER_IDS.commandLine.databaseId ;
+    }
+    if(labels.includes(NEWSLETTER_IDS.theSkimm.labelId)) {
+        return NEWSLETTER_IDS.theSkimm.databaseId ;
     }
 }
 

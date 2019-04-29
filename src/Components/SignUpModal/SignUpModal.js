@@ -17,6 +17,7 @@ class SignUpModal extends Component {
             invalidPasswordLogin: false,
             errorMessage: '',
             showErroMessage: false,
+            loggingIn: false
         }
     }
 
@@ -127,7 +128,8 @@ class SignUpModal extends Component {
                 invalidEmailLogin: false,
                 invalidPasswordLogin: false
             })
-        })
+        });
+        this.setState({loggingIn: true});
     }
 
     runLogin = () => {
@@ -150,6 +152,7 @@ class SignUpModal extends Component {
             })
         });
 
+        this.setState({loggingIn: true});
     }
     
     toggleAuth = (currentType) => {
@@ -181,36 +184,43 @@ class SignUpModal extends Component {
                             <AlertComponent toggleAuth={this.toggleAuth} message={this.state.errorMessage} />
                         }
                         <div className='nav-bar-logo has-text-centered'>Sub<span>lasa</span></div>
-                        <div className="section">
-                            <div className="field">
-                                <p className="control has-icons-left has-icons-right">
-                                    <input value={this.props.email} onChange={ (e) => {this.handleEmailInput(e.target.value)}} className="input" type="email" placeholder="Email" />
-                                    <span className="icon is-small is-left">
-                                    <FontAwesomeIcon icon="envelope" />
-                                    </span>
-                                    <span className="icon is-small is-right">
-                                        {this.state.validEmail &&
-                                            <FontAwesomeIcon icon='check' className='valid-check' />
+                        {this.state.loggingIn ? (
+                                <div className="section">
+                                    <h3>Loggin In</h3>
+                                    <progress className="progress is-small is-primary" max="100">60%</progress>
+                                </div>
+                            ) : (
+                                <div className="section">   
+                                    <div className="field">
+                                        <p className="control has-icons-left has-icons-right">
+                                            <input value={this.props.email} onChange={ (e) => {this.handleEmailInput(e.target.value)}} className="input" type="email" placeholder="Email" />
+                                            <span className="icon is-small is-left">
+                                            <FontAwesomeIcon icon="envelope" />
+                                            </span>
+                                            <span className="icon is-small is-right">
+                                                {this.state.validEmail &&
+                                                    <FontAwesomeIcon icon='check' className='valid-check' />
+                                                }
+                                            </span>
+                                            {/* <FontAwesomeIcon icon="exclamation-triangle" /> */}
+                                        </p>
+                                        {this.state.invalidEmailLogin &&
+                                            <p className="help is-danger">This email is invalid</p>
                                         }
-                                    </span>
-                                    {/* <FontAwesomeIcon icon="exclamation-triangle" /> */}
-                                </p>
-                                {this.state.invalidEmailLogin &&
-                                    <p className="help is-danger">This email is invalid</p>
-                                }
-                            </div>
-                            <div className="field">
-                                <p className="control has-icons-left">
-                                    <input value={this.props.password} onChange={ (e) => {this.handlePasswordInput(e.target.value)}} className="input" type="password" placeholder="Password" />
-                                    <span className="icon is-small is-left">
-                                    <FontAwesomeIcon icon="lock" />
-                                    </span>
-                                </p>
-                                {this.state.invalidPasswordLogin &&
-                                    <p className="help is-danger">This password is invalid</p>
-                                }
-                            </div>
-                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <p className="control has-icons-left">
+                                            <input value={this.props.password} onChange={ (e) => {this.handlePasswordInput(e.target.value)}} className="input" type="password" placeholder="Password" />
+                                            <span className="icon is-small is-left">
+                                            <FontAwesomeIcon icon="lock" />
+                                            </span>
+                                        </p>
+                                        {this.state.invalidPasswordLogin &&
+                                            <p className="help is-danger">This password is invalid</p>
+                                        }
+                                    </div>
+                                </div>
+                            )}
                         <div className="modal-button-container">
                             <li onClick={() => {this.runAuth()}} className="button btn-sublasa btn-sublasa-primary">{this.props.type === 'signup' ? 'Join' : 'Login' }</li>
                             <Link to='/' onClick={() => {this.props.updateActiveState(false)}} className="button btn-sublasa btn-sublasa-secondary">Cancel</Link>

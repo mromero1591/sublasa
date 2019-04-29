@@ -2,14 +2,12 @@
 var initalState = {
     newsletters: [],
     subscribedNewsLetters: [],
-    topics: [],
-    topicId: -1
+    topics: []
 }
 
 
 const UPDATE_NEWSLETTERS = 'UPDATE_NEWSLETTERS';
 const UPDATE_SUBSCRIBED = 'UPDATE_SUBSCRIBED';
-const GET_TOPIC = 'GET_TOPIC';
 const UPDATE_TOPICS = 'UPDATE_TOPICS';
 
 function reducer(state = initalState, action) {
@@ -23,16 +21,6 @@ function reducer(state = initalState, action) {
             return {
                 ...state,
                 subscribedNewsLetters: [...action.payLoad]
-            }
-        case GET_TOPIC:
-            var newTopic = state.topics.filter(topic => {
-                if(topic.name === action.topicName) {
-                    return newTopic;
-                }
-            })
-            return {
-                ...state,
-                topicId: newTopic[0].id
             }
         case UPDATE_TOPICS:
             return {
@@ -65,10 +53,4 @@ export function updateTopics(topics) {
     }
 }
 
-export function getTopic(topicName) {
-    return {
-        type: GET_TOPIC,
-        payLoad: topicName
-    }
-}
 export default reducer;

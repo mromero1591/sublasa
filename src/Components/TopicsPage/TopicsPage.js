@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import Axios from 'axios';
+import React from 'react';
+
 import {connect} from 'react-redux';
 
 //CUSTOM IMPORTS
@@ -26,7 +26,10 @@ function TopicsPage(props){
                 return topic.id;
             }
         })
-        return newTopic[0].id;
+        if(newTopic.length > 0) {
+            return newTopic[0].id;
+        }
+            return -1;
     }
 
     function getNewsLetterDisplay() {
@@ -56,7 +59,7 @@ function TopicsPage(props){
 
     var topic = props.match.params.id;
     var displayNewsLetters = getNewsLetterDisplay();
-    
+
     return (
         <section className='container'>
             <div className="section">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { faEnvelope,faCheck,faLock, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope,faCheck,faLock, faExclamationTriangle, faSignInAlt, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import Axios from 'axios';
 import './App.scss';
@@ -13,7 +13,7 @@ import Footer from './Components/Footer/Footer';
 import {updateLoggedIn} from './ducks/AuthReducer/AuthReducer';
 import {updateSubscribed, updateNewsLetters} from './ducks/newsletterRecudcer/newsletterReduce';
 
-library.add(faEnvelope,faCheck,faLock,faExclamationTriangle);
+library.add(faEnvelope,faCheck,faLock,faExclamationTriangle,faSignInAlt, faSignOutAlt, faUserPlus);
 
 
 class App extends Component {
