@@ -139,6 +139,7 @@ app.get('/api/newsletters', articlesController.getNewsLetters);
 app.get('/api/newletters/:id', articlesController.getNewsLettersByTopic);
 app.get('/api/articles', articlesController.getArticles);
 app.get('/api/topics', articlesController.getTopics);
+app.get('/api/newsletter/:id', articlesController.getAllNewsLetterArticles);
 app.get('/api/newsletter/:id/articles', articlesController.getArticlesByNewsletter);
 app.get('/api/articles/:id', articlesController.getArticleById);
 app.get('/api/subscribed/newsletters', articlesController.getSubscribedNewsLetters);

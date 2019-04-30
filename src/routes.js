@@ -7,6 +7,7 @@ import TopicsPage from './Components/TopicsPage/TopicsPage';
 import ArticleContainer from './Components/ArticleComponents/ArticleContainer/ArticleContainer';
 import SubscribedNewsLetters from './Components/SubscribedNewsLetters/SubscribedNewsLetters';
 import SignUpModal from "./Components/SignUpModal/SignUpModal";
+import NewsLetterPage from './Components/NewsLetterPage/NewsLetterPage';
 
 export default (
     <Switch>
@@ -14,7 +15,8 @@ export default (
         <Route path='/auth' component={SignUpModal} />
         <Route path='/topics/:id' component={TopicsPage} />
         <Route path='/articles/:id' component={ArticleContainer} />
-        <Route path='/newsletters' component={SubscribedNewsLetters} />
+        <Route exact path='/newsletters' component={SubscribedNewsLetters} />
+        <Route path='/newsletters/:id' component={NewsLetterPage} />
     </Switch>
 )
 

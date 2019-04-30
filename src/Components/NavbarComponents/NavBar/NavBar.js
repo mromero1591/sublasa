@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 //custom imports
@@ -62,9 +63,9 @@ class NavBar extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-            <div className='navbar-item' id='navbar-logo-link'>
+            <Link to='/' className='navbar-item' id='navbar-logo-link'>
               <div className='nav-bar-logo'>Sub<span>lasa</span></div>
-            </div>
+            </Link>
             <NavBarHam toggleMenu={this.handleNavbarMenu} isActive={this.state.isActive}/>
         </div>
       

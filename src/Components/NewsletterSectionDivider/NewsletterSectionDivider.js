@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import SubscribeButton from '../SubscribeButton/SubscribeButton';
 import Axios from 'axios';
@@ -46,7 +47,18 @@ function NewsletterSection(props) {
     var subscribed = props.loggedIn ? isSubscribed(props.newsletter, props.subscribedNewsLetters) : true;
     return(
         <div className='newsletter-section-divider'>
-            <h1 className='newsletter-divider-title'>{props.newsletter.name} {!subscribed && <SubscribeButton subscribe={subscibeToNewsletter} />}</h1>
+            <h1 className='newsletter-divider-title'>
+                <Link to={{
+                    pathname: `/newsletters/${props.newsletter.id}`,
+                    state: { newsletterName: props.newsletter.name }
+                }}
+                >
+                    {props.newsletter.name}
+                </Link> 
+
+                
+                
+                {!subscribed && <SubscribeButton subscribe={subscibeToNewsletter} />}</h1>
             
             <div className="sectionDividerLine"></div>
         </div>

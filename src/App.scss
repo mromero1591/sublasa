@@ -18,11 +18,6 @@ $breakpoint-tablet: 768px;
     
 }
 
-.nav-bar-logo:hover {
-    color: black;
-    cursor: default;
-}
-
 .navbar-burger {
     top: 5px;
 }
@@ -62,7 +57,41 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     border-bottom: 2px $primary-color solid;
 }
 
-//LANDING BANNER
+//LANDING PAGE
+.hero {
+    position: relative;
+    background: linear-gradient(to right, #2c3e50a8, #bdc3c79e), url('./assets/imgs/landing_banner_2.jpg');
+    background-position: center;
+    background-size: cover;
+    .title {
+        color: $primary-color;
+    }
+    .subtitle {
+        color: #0b0b0c
+    }
+}
+.landing-cards-wrapper {
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-column-gap: 5%;
+
+    .landing-card {
+        display: flex;
+        align-items: center;
+        max-height: 190px;
+        .landing-cards-img {
+            width: 200px;
+        }
+
+        .landing-card-content {
+            display: flex;
+            flex-flow: column nowrap;
+        }
+    }
+    
+}
+
+
 
 // NEWSLETTER CARD
 .card-carol {
@@ -231,6 +260,18 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     background-color: #c8c8c8
 }
 
+
+.article-card-container {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-column-gap: 5%;
+    grid-row-gap: 20px;
+
+    .newsletter-article-card {
+        height: 300px;
+    }
+}
+
 @media only screen and (min-width: $breakpoint-tablet) {
     .navbar {
         padding: 10px 10% 0px;
@@ -253,6 +294,10 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     .newsletter-divider-title {
         font-size: 1.5em;
 
+        a {
+            text-decoration: none;
+            color: black;
+        }
         .btn-subscribe-section {
             margin-left: 20px;
         }

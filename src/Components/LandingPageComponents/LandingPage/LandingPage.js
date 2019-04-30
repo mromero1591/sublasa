@@ -11,6 +11,9 @@ import {updateActiveState, updateType} from '../../../ducks/AuthReducer/AuthRedu
 import chip from '../../../assets/imgs/chip-head.svg';
 import monitor from '../../../assets/imgs/monitor-window.svg';
 import writePaper from '../../../assets/imgs/write-paper-ink.svg';
+import custom from '../../../assets/imgs/radio-host.svg';
+import request from '../../../assets/imgs/monitor-loading-progress.svg';
+import noSpam from '../../../assets/imgs/stamp-document.svg';
 
 
 class LandingPage extends Component {
@@ -27,34 +30,53 @@ class LandingPage extends Component {
       <section className="landingPage">
         <LandingBanner />
         <SectionDivder name='Features' />
-        <div className="container">
-          <div className="tile is-ancestor">
-            <div className="tile is-parent is-vertical">
-              <div className=" tile is-parent split-tiles">
-                <div className="tile is-4 is-child feature-section-item">
-                  <img className='' src={chip} alt="chip head"/>
-                  <p className='title'>Privacy</p>
-                  <p className='subtitle'>Never Share your email again.Subscribe with privacy.</p>
-                </div>
-                <div className="tile is-4 is-child  feature-section-item">
-                  <img className='' src={monitor} alt="chip head"/>
-                  <p className='title'>Central Location</p>
-                  <p className='subtitle'>Never Share your email again.Subscribe with privacy.</p>
-                </div>
-              </div>
-              <div className="tile is-parent center-tile">
-                <div className="tile is-4 is-child  feature-section-item">
-                  <img className='' src={writePaper} alt="chip head"/>
-                  <p className='title'>Privacy</p>
-                  <p className='subtitle'>Never Share your email again.Subscribe with privacy.</p>
-                </div>
-              </div>
+        <div className='landing-cards-wrapper container'>
+          <div className='box landing-card'>
+            <img className='landing-cards-img' src={chip} alt="chip head"/>
+            <div className="landing-card-content">
+              <h4 className='title is-size-4'>Privacy</h4>
+              <p>Never share your email again.</p>
+            </div>
+          </div>
+          <div className='box landing-card'>
+            <img className='landing-cards-img' src={monitor} alt="Moniter"/>
+            <div className="landing-card-content">
+              <h4 className='title is-size-4'>Massive Library</h4>
+              <p>Contains any Newsletter you can imagine.</p>
+            </div>
+          </div>
+          <div className='box landing-card'>
+            <img className='landing-cards-img' src={writePaper} alt="write paper"/>
+            <div className="landing-card-content">
+              <h4 className='title is-size-4'>New Weekly</h4>
+              <p>New Newsletters are added weekly.</p>
+            </div>
+          </div>
+          <div className='box landing-card'>
+            <img className='landing-cards-img' src={custom} alt="custom"/>
+            <div className="landing-card-content">
+              <h4 className='title is-size-4'>Customizable</h4>
+              <p>Subscribe and see only your Favorites.</p>
+            </div>
+          </div>
+          <div className='box landing-card'>
+            <img className='landing-cards-img' src={request} alt="request"/>
+            <div className="landing-card-content">
+              <h4 className='title is-size-4'>Request your Favorites</h4>
+              <p>Request any Newsletter you want.</p>
+            </div>
+          </div>
+          <div className='box landing-card'>
+            <img className='landing-cards-img' src={noSpam} alt="no spam"/>
+            <div className="landing-card-content">
+              <h4 className='title is-size-4'>Zero Spam</h4>
+              <p>We believe that emails should never be Spam.</p>
             </div>
           </div>
         </div>
         <SectionDivder name='Subscribe' />
         <section className='subscribe-section'>
-          <p className=''>Join the Largest and Most Innovative Newsletter</p>
+          <p className=''>Join the largest and most innovative online Newsletter library</p>
           <Link to='auth' onClick={() => {this.handleauth('signup')}} className='button btn-sublasa-primary is-large btn-sublasa-action'> Join </Link>
         </section>
       </section>

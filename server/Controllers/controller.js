@@ -121,6 +121,33 @@ module.exports = {
             res.sendStatus(500);
         })
     },
+
+    getAllNewsLetterArticles: function(req,res,next) {
+        //Purpose: Get all the articles in the database by newsletter
+        //Params: req: the request from the front end
+        //Returns: 4 of the most recent newsletters from the database as an array.
+        //Outcome: none
+        var dbInstance = req.app.get('db');
+        var id = parseInt(req.params.id);
+        dbInstance.get_all_newsletter_articles(id)
+        .then(function(articles) {
+            var convertedArticles = articles.map(function(article) {
+                var content = article.content;
+                var buff = new Buffer.from(content, 'base64');  
+                var convertedContent = buff.toString();
+
+                return {
+                    ...article,
+                    content: convertedContent
+                }
+            })
+            res.status(200).send(convertedArticles);
+        }).catch( function(err) {
+            console.log('error in getting articles:', err);
+            res.sendStatus(500);
+        })
+    },
+
     getArticleById: function(req,res,next) {
         //Purpose: Get one article from the databse, by id
         //Params: req: the request from the front end
