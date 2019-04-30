@@ -7,6 +7,8 @@ import {updateActiveState, updateType, updateLoggedIn} from '../../ducks/AuthRed
 import {updateSubscribed} from '../../ducks/newsletterRecudcer/newsletterReduce';
 import Axios from 'axios';
 
+import useAdd from '../../assets/imgs/user-female-add.svg';
+
 class AuthSection extends Component {
 
     handleauth = (type) => {
@@ -43,11 +45,9 @@ class AuthSection extends Component {
                         </Link>
                     </div>
                 ) : (
-                    <div className="buttons">
-                        <Link to='/' onClick={this.handleLogout} className="button btn-sublasa btn-sublasa-secondary">
-                        <FontAwesomeIcon icon="sign-out-alt" /> Log Out
-                        </Link>
-                    </div>
+                    <Link to='/' onClick={this.handleLogout} className="button btn-sublasa btn-sublasa-secondary">
+                    <FontAwesomeIcon icon="sign-out-alt" /> Log Out
+                    </Link>
                 )}
             </div>
         )
