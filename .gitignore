@@ -20,6 +20,7 @@ token.json
 .env.development.local
 .env.test.local
 .env.production.local
+.env.prod
 .env.prod.local
 
 npm-debug.log*
