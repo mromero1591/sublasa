@@ -49,7 +49,7 @@ class ArticleContainer extends Component {
 
     render() {
         return(
-            <section className='container '>
+            <section className='container article-container-wrapper'>
                 <ArticleNavigation isTop={this.state.isTop} goBack={this.props.history.goBack}  title={this.state.currentArticle.title} />
                 <div className="continer article-container">
                     <div id='article'></div>

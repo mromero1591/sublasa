@@ -7,8 +7,6 @@ import {updateActiveState, updateType, updateLoggedIn} from '../../ducks/AuthRed
 import {updateSubscribed} from '../../ducks/newsletterRecudcer/newsletterReduce';
 import Axios from 'axios';
 
-import useAdd from '../../assets/imgs/user-female-add.svg';
-
 class AuthSection extends Component {
 
     handleauth = (type) => {

@@ -98,7 +98,6 @@ class SignUpModal extends Component {
         } else { //if both fields are valid then run the auth based on type.
             if(type === 'signup') { //if type is sign up then register the new user.
                 //run sign up code.
-                this.runRegsitration();
                 this.runUserAuth('/auth/register');
             } else {
                 //run login code.

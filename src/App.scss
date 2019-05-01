@@ -5,6 +5,7 @@ $navbar-breakpoint: 769px;
 
 
 $primary-color: #F8E196;
+$breakpoint-laptop: 1024px;
 $breakpoint-tablet: 768px;
 
 // NAVBAR
@@ -70,9 +71,10 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
         color: #0b0b0c
     }
 }
+
 .landing-cards-wrapper {
     display: grid;
-    grid-template-columns: 30% 30% 30%;
+    grid-template-columns: 100%;
     grid-column-gap: 5%;
 
     .landing-card {
@@ -80,7 +82,7 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
         align-items: center;
         max-height: 190px;
         .landing-cards-img {
-            width: 200px;
+            width: 100px;
         }
 
         .landing-card-content {
@@ -189,6 +191,11 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     font-size: 1.5em;
     display: flex;
     align-items: center;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
     
 }
 
@@ -196,11 +203,12 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
 //NEWSLETTERARTICLECONTAINER
 .newsletter-article-container {
     display: grid;
-    grid-template-columns: 50%;
-    padding-top: 20px;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    justify-content: center;
+    grid-template-columns: 100%;
+    grid-row-gap: 20px;
+    padding: 10px 20px;
+    .newsletter-article-card {
+        height: 200px;
+    }
 }
 
 .newsletter-article-card {
@@ -227,15 +235,8 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     justify-content: center;
 }
 
-.article-container-wrapper {
-    display: grid;
-    grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 10% 90%;
-    grid-row-gap: 10px;
-}
 
 .article-navigation-wrapper {
-    grid-row: 3/4;
     grid-column: 1/4;
 }
 
@@ -263,61 +264,46 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
 
 .article-card-container {
     display: grid;
-    grid-template-columns: 20% 20% 20% 20%;
-    grid-column-gap: 5%;
+    grid-template-columns: 100%;
     grid-row-gap: 20px;
-
+    padding: 0px 20px;
     .newsletter-article-card {
-        height: 300px;
+        height: 200px;
     }
 }
 
+
+//SING UP MODAL
+.sing-up-link {
+    background: none;
+    border: none;
+    font-size: inherit;
+    color: white;
+    cursor: pointer;
+    border-bottom: 2px #f8e196 solid;
+}
+
 @media only screen and (min-width: $breakpoint-tablet) {
-    .navbar {
-        padding: 10px 10% 0px;
-    }
-
-    .navbar-topics {
-        border-right: 2px $primary-color solid;
-    }
-    a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
-        border-bottom: 2px $primary-color solid;
-        background-color: white;
-    }
-
-
-    .newsletter-section-divider {
-        grid-template-columns: 20% 80%;
-        align-items: center;
-    }
-    
-    .newsletter-divider-title {
-        font-size: 1.5em;
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-        .btn-subscribe-section {
-            margin-left: 20px;
-        }
+    .landing-cards-wrapper {
+        grid-template-columns: 50% 50%;
+        .landing-card {
+            max-height: 166px;
+            max-width: 354px;
+        } 
     }
 
     .newsletter-article-container {
-        display: grid;
-        grid-template-columns: repeat(4, 20%);
-        grid-template-rows: 300px;
-        grid-column-gap: 5%;
-        justify-content: end;
+        grid-template-columns: 45% 45%;
+        grid-column-gap: 10%;
+        grid-row-gap: 20px;
     }
-    
-    .article-container-wrapper {
-        display: grid;
-        grid-template-columns: 10% 80% 10%;
-        grid-template-rows: 10% 90%;
-        grid-row-gap: 10px;
+
+    .article-card-container {
+        grid-template-columns: 45% 45%;
+        grid-column-gap: 10%;
+        grid-row-gap: 20px;
     }
-    
+
     .article-navigation-wrapper {
         grid-row: 1/2;
         grid-column: 1/4;
@@ -339,6 +325,80 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
             
         }
     }
+}
+
+@media only screen and (min-width: $breakpoint-laptop) {
+    .navbar {
+        padding: 10px 10% 0px;
+    }
+
+    .navbar-topics {
+        border-right: 2px $primary-color solid;
+    }
+    a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+        border-bottom: 2px $primary-color solid;
+        background-color: white;
+    }
+
+
+    .landing-cards-wrapper {
+        grid-template-columns: 30% 30% 30%;
+        grid-row-gap: 5%;
+
+        .landing-card {
+            display: flex;
+            align-items: center;
+            max-height: 190px;
+            .landing-cards-img {
+                width: 200px;
+            }
+    
+            .landing-card-content {
+                display: flex;
+                flex-flow: column nowrap;
+            }
+        }
+        
+    }
+
+
+    .newsletter-section-divider {
+        grid-template-columns: 20% 80%;
+        align-items: center;
+    }
+    
+    .newsletter-divider-title {
+        font-size: 1.5em;
+
+        .btn-subscribe-section {
+            margin-left: 20px;
+        }
+    }
+
+    .newsletter-article-container {
+        display: grid;
+        grid-template-columns: repeat(4, 20%);
+        grid-template-rows: 300px;
+        grid-column-gap: 5%;
+        justify-content: end;
+
+        .newsletter-article-card {
+            height: 300px;
+        }
+    }
+    
+    .article-card-container {
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20%;
+        grid-column-gap: 5%;
+        grid-row-gap: 20px;
+        padding: 0px 40px;
+        .newsletter-article-card {
+            height: 300px;
+        }
+    }
+    
+    
     .modal-button-container {
         display: flex;
         justify-content: flex-end;
