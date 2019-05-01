@@ -11,6 +11,9 @@ const authController = require('./Controllers/authController');
 const app = express();
 app.use(bodyParser.json());
 
+app.use( express.static( `${__dirname}/../build` ));
+
+
 //ENVIORMENT VARIABLES
 const {SERVER_PORT, 
     DATABASE_URI,
