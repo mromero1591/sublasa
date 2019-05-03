@@ -56,8 +56,6 @@ function NewsletterSection(props) {
                     {props.newsletter.name}
                 </Link> 
 
-                
-                
                 {!subscribed && <SubscribeButton subscribe={subscibeToNewsletter} />}</h1>
             
             <div className="sectionDividerLine"></div>

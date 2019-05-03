@@ -36,7 +36,7 @@ class NewsletterArticleContainer extends Component {
           backgroundColor = '#70788e';
         }
         return(
-          <ArticleCard key={article.id} article={article} backgroundColor={backgroundColor}/>
+          <ArticleCard key={article.id} newsletterId={this.props.newsletter.id} newsletterName={this.props.newsletter.name} article={article} backgroundColor={backgroundColor}/>
         )
       }
       return '';
