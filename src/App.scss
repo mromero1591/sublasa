@@ -199,7 +199,6 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     
 }
 
-
 //NEWSLETTERARTICLECONTAINER
 .newsletter-article-container {
     display: grid;
@@ -216,11 +215,27 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
-    background-color: #3e4c4f;
+    background-color: #70788e;
     color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+
+    .logo-section {
+        display: flex;
+        align-items: center;
+
+        h1 {
+            margin-left: 10px;
+            color: white;
+            font-size: 14px;
+        }
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .btn-article-read {
+        width: 50%;
+    }
 }
 
 //Footer
@@ -270,6 +285,10 @@ a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.i
     .newsletter-article-card {
         height: 200px;
     }
+}
+
+.article-card-logo {
+    align-self: flex-start;
 }
 
 
