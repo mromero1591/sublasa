@@ -28,7 +28,7 @@ function ArticleCard(props) {
     }
 
     var getLogo = (id) => {
-        var logos = [command_line,the_interface,the_hustle,axios_am,axios_pm,axios_space,the_skimm];
+        var logos = [command_line,the_hustle,the_interface,axios_am,axios_pm,axios_space,the_skimm];
 
         return logos[id - 1];
     }
