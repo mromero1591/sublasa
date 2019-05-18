@@ -175,7 +175,6 @@ module.exports = {
             var user_id = req.session.user.id;
             var dbInstance = req.app.get('db');
             var id = parseInt(req.params.id); 
-            var dbInstance = req.app.get('db');
 
             dbInstance.subscribe_to_newsletter([user_id, id])
             .then( () => {
@@ -183,6 +182,20 @@ module.exports = {
             }).catch(err => {
                 res.status(500).send({message: 'faced erro in subscribing', err });
             });
+        }
+    },
+    unsubscribe: function(req,res,next) {
+        if(req.session && req.session.user) {
+            var user_id = req.session.user.id;
+            var dbInstance = req.app.get('db');
+            var id = parseInt(req.params.id); 
+
+            dbInstance.unsubscribe_to_newsletter([user_id,id])
+            .then( () => {
+                res.status(200).send({message: 'sucessfuly unsubscribed'});
+            }).catch( err => {
+                res.status(500).send({message: 'error in unsubscribing'});
+            })
         }
     }
 }

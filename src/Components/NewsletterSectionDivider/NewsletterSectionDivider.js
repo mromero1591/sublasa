@@ -44,6 +44,20 @@ function NewsletterSection(props) {
         })
     }
 
+    function unsubscribeToNewsletter() {
+        Axios.delete(`/api/unsubscribe/${props.newsletter.id}`)
+        .then(res => {  
+            Axios.get('/api/subscribed/newsletters')
+            .then( res => {
+            props.updateSubscribed(res.data);
+            }).catch(err => {
+                console.log(err);
+            })
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+
     var subscribed = props.loggedIn ? isSubscribed(props.newsletter, props.subscribedNewsLetters) : true;
     return(
         <div className='newsletter-section-divider'>
@@ -56,8 +70,10 @@ function NewsletterSection(props) {
                     {props.newsletter.name}
                 </Link> 
 
-                {!subscribed && <SubscribeButton subscribe={subscibeToNewsletter} />}</h1>
-            
+                {!subscribed && <SubscribeButton name='Subscribe' subscribe={subscibeToNewsletter} />}
+                {subscribed && <SubscribeButton name='Unsubscribe' subscribe={unsubscribeToNewsletter} />}
+            </h1>
+                
             <div className="sectionDividerLine"></div>
         </div>
     );

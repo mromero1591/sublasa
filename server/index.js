@@ -146,6 +146,7 @@ app.get('/api/newsletter/:id/articles', articlesController.getArticlesByNewslett
 app.get('/api/articles/:id', articlesController.getArticleById);
 app.get('/api/subscribed/newsletters', articlesController.getSubscribedNewsLetters);
 app.post('/api/subscribe/:id', articlesController.subscribeToNewsLetter);
+app.delete('/api/unsubscribe/:id', articlesController.unsubscribe);
 
 app.listen(SERVER_PORT, function() {
     console.log('listening on Port:', SERVER_PORT);
