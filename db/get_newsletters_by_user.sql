@@ -2,6 +2,7 @@ SELECT
     n.id,
     n.name,
     n.topic_id,
+    n.img,
     n.snippet,
     u.id AS USER_id
 FROM
