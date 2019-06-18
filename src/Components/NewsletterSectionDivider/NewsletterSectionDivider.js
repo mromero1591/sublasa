@@ -62,14 +62,7 @@ function NewsletterSection(props) {
     return(
         <div className='newsletter-section-divider'>
             <h1 className='newsletter-divider-title'>
-                <Link to={{
-                    pathname: `/newsletters/${props.newsletter.id}`,
-                    state: { newsletterName: props.newsletter.name }
-                }}
-                >
-                    {props.newsletter.name}
-                </Link> 
-
+                {props.newsletter.name}
                 {!subscribed && <SubscribeButton name='Subscribe' subscribe={subscibeToNewsletter} />}
                 {subscribed && <SubscribeButton name='Unsubscribe' subscribe={unsubscribeToNewsletter} />}
             </h1>
