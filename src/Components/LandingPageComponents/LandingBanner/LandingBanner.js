@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class LandingBanner extends Component {
-  render() {
-    return (
-      <section className="hero is-large">
+export default function() {
+  return (
+    <section className="hero is-large">
         <div className="hero-body">
           <div className="container landing-content">
             <h1 className="title">
@@ -12,7 +11,6 @@ export default class LandingBanner extends Component {
             <h2 className="subtitle">Enjoy an unlimited number of Newsletters for FREE.</h2>
           </div>
         </div>
-      </section>
-    )
-  }
+    </section>
+  );
 }

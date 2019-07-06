@@ -63,7 +63,7 @@ function TopicsPage(props){
     return (
         <section className='container'>
             <div className="section">
-                <h1 className='title is-uppercase'>{topic}</h1>
+                <h1 className='title is-1 is-uppercase'>{topic}</h1>
             </div>
             {displayNewsLetters}
         </section>
