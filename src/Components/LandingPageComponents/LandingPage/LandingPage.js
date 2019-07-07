@@ -16,14 +16,14 @@ import custom from '../../../assets/imgs/radio-host.svg';
 import request from '../../../assets/imgs/monitor-loading-progress.svg';
 import noSpam from '../../../assets/imgs/stamp-document.svg';
 
-const handleauth = (type) => {
-  var {signUpActive, updateActiveState, updateType} = this.props;
+const handleauth = (type, props) => {
+  var {signUpActive, updateActiveState, updateType} = props;
   var newState = signUpActive ?  false : true;
   updateActiveState(newState);
   updateType(type);
 }
 
-function LandingPage() {
+function LandingPage(props) {
   return (
     <section className="landingPage">
       <LandingBanner />
@@ -37,10 +37,10 @@ function LandingPage() {
         <LandingPageImgCard title="Zero Spam" image={noSpam} text="We believe that emails should never be Spam."/>
       </div>
       <SectionDivder name='Subscribe' />
-      <section className='subscribe-section'>
+      {!props.loggedIn && <section className='subscribe-section'>
         <p className=''>Join the largest and most innovative online Newsletter library</p>
-        <Link to='auth' onClick={() => {handleauth('signup')}} className='button btn-sublasa-primary is-large btn-sublasa-action'> Join </Link>
-      </section>
+        <Link to='auth' onClick={() => {handleauth('signup', props)}} className='button btn-sublasa-primary is-large btn-sublasa-action'> Join </Link>
+      </section>}
     </section>
   )  
 }
@@ -48,7 +48,8 @@ function LandingPage() {
 function mapStateToProps(state) {
   return {
     signUpActive: state.Auth.signUpActive,
-    type: state.Auth.type
+    type: state.Auth.type,
+    loggedIn: state.Auth.loggedIn
   }
 }
 
